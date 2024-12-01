@@ -9,7 +9,7 @@ function Header() {
           Sign Up
         </button>
         <button className="header__login-btn">
-          Log In
+          Log 
         </button>
       </div>
     </header>

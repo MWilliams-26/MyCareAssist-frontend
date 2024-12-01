@@ -8,9 +8,7 @@ function Header() {
         <button className="header__register-btn">
           Sign Up
         </button>
-        <button className="header__login-btn">
-          Log In
-        </button>
+        <button className="header__"
       </div>
     </header>
     );
