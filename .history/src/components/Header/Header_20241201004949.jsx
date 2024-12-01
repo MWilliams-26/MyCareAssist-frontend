@@ -1,3 +1,5 @@
+import logo-color.svg from "../../assets"
+
 function Header() {
   return (
     <div>

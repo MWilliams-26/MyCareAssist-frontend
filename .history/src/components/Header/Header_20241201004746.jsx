@@ -1,3 +1,5 @@
+import log
+
 function Header() {
   return (
     <div>

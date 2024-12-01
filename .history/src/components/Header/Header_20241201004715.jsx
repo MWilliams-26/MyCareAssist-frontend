@@ -1,3 +1,5 @@
+import logo-colorsvgsvg from "."
+
 function Header() {
   return (
     <div>

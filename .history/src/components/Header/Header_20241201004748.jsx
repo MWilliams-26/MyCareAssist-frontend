@@ -1,3 +1,5 @@
+import logo
+
 function Header() {
   return (
     <div>

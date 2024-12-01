@@ -1,3 +1,5 @@
+import logo-color
+
 function Header() {
   return (
     <div>
