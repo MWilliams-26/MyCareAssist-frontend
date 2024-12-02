@@ -1,0 +1,9 @@
+.page {
+  background-color: #B4DDCF;
+}
+
+.page__content {
+  max-width: 14400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
