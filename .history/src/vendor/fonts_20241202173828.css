@@ -42,6 +42,13 @@
   
   @font-face {
     font-family: "Be Vietnam Pro", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    src: url('./fonts/BeVietnamPro-ThinItalic.ttf');
+  }
+  
+  @font-face {
+    font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 200;
     font-style: italic;
     src: url('./fonts/BeVietnamPro-ExtraLightItalic.ttf');
