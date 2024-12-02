@@ -1,0 +1,5 @@
+const ModalWithForm = ({ title, buttonText, redirectText, handleTextButton, children, onClose, isOpen }) => {
+  return (
+    <div></div>
+  )
+};

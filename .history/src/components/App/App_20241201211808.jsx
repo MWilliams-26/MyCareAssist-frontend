@@ -4,8 +4,7 @@ import Header from '../Header/Header';
 import RegisterModal from '../RegisterModal/RegisterModal';
 
 function App() {
-  const [activeModal, setActiveModal] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   const [currentUser, setCurrentUser] = useState({
     email: "",
     name: "",
@@ -25,26 +24,10 @@ function App() {
     setActiveModal("");
   }
 
-  const handleRegistration = (data) => {
-    console.log(data);
-    setIsLoggedIn(true);
-    setCurrentUser(data);
-  }
-
 
   return (
     <div className="App">
-      <Header
-        handleRegistrationClick={handleRegistrationClick}
-        handleLoginClick={handleLoginClick}
-      />
-
-      <RegisterModal
-        isOpen={activeModal === "signup"}
-        onClose={closeActiveModal}
-        handleRegistration={handleRegistration}
-        handleTextButton={handleLoginClick}
-      />
+      <Header />
     </div>
   );
 }

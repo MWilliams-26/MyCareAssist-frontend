@@ -25,26 +25,12 @@ function App() {
     setActiveModal("");
   }
 
-  const handleRegistration = (data) => {
-    console.log(data);
-    setIsLoggedIn(true);
-    setCurrentUser(data);
-  }
+  const handleRegistration = ({ em})
 
 
   return (
     <div className="App">
-      <Header
-        handleRegistrationClick={handleRegistrationClick}
-        handleLoginClick={handleLoginClick}
-      />
-
-      <RegisterModal
-        isOpen={activeModal === "signup"}
-        onClose={closeActiveModal}
-        handleRegistration={handleRegistration}
-        handleTextButton={handleLoginClick}
-      />
+      <Header />
     </div>
   );
 }

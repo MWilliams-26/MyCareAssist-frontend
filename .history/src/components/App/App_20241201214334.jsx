@@ -25,11 +25,7 @@ function App() {
     setActiveModal("");
   }
 
-  const handleRegistration = (data) => {
-    console.log(data);
-    setIsLoggedIn(true);
-    setCurrentUser(data);
-  }
+  
 
 
   return (

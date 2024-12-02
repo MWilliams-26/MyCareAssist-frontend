@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Goblin One";
+  src: url('');
+}
+
+body {
+  font-family: "Goblin One", serif;
+}
