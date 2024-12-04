@@ -1,0 +1,22 @@
+.welcome__title {
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.welcome__text {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.welcome__features-title {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 20px;
+  font-weight: 4;
+}
+
+

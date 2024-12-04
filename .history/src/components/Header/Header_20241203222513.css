@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 0 10px;
+  font-weight: 400;
+  background-color: #B4DDCF;
+}
+
+.header__logo {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Goblin One", serif;
+  font-size: 24px;
+  color: #013C38;
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+}
+
+.header__container {
+ align-items: baseline
+}
+
+
+.header__title {
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: small;
+}
+
+.header__register-btn {
+  margin: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Goblin One", serif;
+  font-size:medium;
+  font-weight: 400;
+  color: #013C38;
+  background-color: transparent;
+}
+
+.header__login-btn {
+  margin: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Goblin One", serif;
+  font-size:medium;
+  font-weight: 400;
+  color: #013C38;
+  background-color: transparent;
+}

@@ -1,0 +1,39 @@
+
+
+.welcome__title {
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.welcome__text {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.welcome__features-title {
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: 20px;
+  font-weight: 400px;
+}
+
+.welcome__features-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.welcome__features-text {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
