@@ -10,7 +10,7 @@ function Main({ handleRegistrationClick }) {
             We are a team of professionals who are ready to help you with your health.
           </p>
           <div className="welcome__button-container">
-            <button className="welcome__button" onClick={handleRegistrationClick}>Get started</button>
+          <button className="welcome__button" onClick={handleRegistrationClick}>Get started</button>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import './Main.css';
 
-function Main({ handleRegistrationClick }) {
+function Main() {
   return (
     <main>
       <section className="welcome__section">
@@ -10,8 +10,7 @@ function Main({ handleRegistrationClick }) {
             We are a team of professionals who are ready to help you with your health.
           </p>
           <div className="welcome__button-container">
-            <button className="welcome__button" onClick={handleRegistrationClick}>Get started</button>
-          </div>
+          <button className="welcome__button">Get Up</button>
         </div>
       </section>
       <section className="welcome__features">
