@@ -1,0 +1,5 @@
+impor
+
+const SetupProfile = ({}) => {
+  return ()
+}

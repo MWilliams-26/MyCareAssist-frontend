@@ -1,0 +1,3 @@
+const SetupProfile = ({}) => {
+  ret
+}
