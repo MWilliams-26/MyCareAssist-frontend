@@ -1,0 +1,12 @@
+.footer {
+  max-width: 1358px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px, 0
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #013C38;
+}

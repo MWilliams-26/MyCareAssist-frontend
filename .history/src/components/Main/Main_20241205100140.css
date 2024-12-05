@@ -1,0 +1,150 @@
+.welcome__title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.welcome__title {
+  margin: 30px 0 0;
+  text-align: center;
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.welcome__text {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.welcome__button {
+  margin-bottom: 30px;
+  border: 2px solid #013C38;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: large;
+  font-weight: 400;
+  color: #013C38;
+  background-color: #b4ddcf;
+}
+
+.welcome__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #333736; /* Darker shade for hover state */
+  cursor: pointer;
+}
+
+.welcome__features-title {
+  text-align: center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-style:italic;
+  color:#013C38;
+  font-size: 34px;
+  font-weight: 400px;
+}
+
+/* .welcome__features-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.welcome__features-doctor {
+  width: 250px;
+  height: 100px;
+  border: 1px solid #013C38;
+  background-color: #B4DDCF;
+}
+
+.welcome__features-emergency {
+  width: 250px;
+  border: 1px solid #013C38;
+  background-color: #B4DDCF;
+}
+
+.welcome__features-calendar {
+  width: 250px;
+  border: 1px solid #013C38;
+  background-color: #B4DDCF;
+}
+
+.welcome__features-medication {
+  width: 250px;
+  border: 1px solid #013C38;
+  background-color: #B4DDCF;
+} 
+
+.welcome__features-sub {
+  text-align:center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.welcome__features-text {
+  text-align:center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 16px;
+  font-weight: 400;
+} */
+
+.welcome__features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.welcome__features-doctor,
+.welcome__features-emergency,
+.welcome__features-calendar,
+.welcome__features-medication {
+  background-color: #B4DDCF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.welcome__features-doctor:hover,
+.welcome__features-emergency:hover,
+.welcome__features-calendar:hover,
+.welcome__features-medication:hover {
+  transform: translateY(-5px);
+}
+
+.welcome__features-sub {
+  color: #013C38;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome__features-text {
+  color: #013C38;
+  line-height: 1.6;
+}
+
+.welcome__features-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #013C38;
+  font-size: 2rem;
+}
+
+
+
