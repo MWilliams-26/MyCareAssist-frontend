@@ -24,7 +24,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addDoctor(values);
+    doctorsList(values);
     resetActiveForm();
   };
 

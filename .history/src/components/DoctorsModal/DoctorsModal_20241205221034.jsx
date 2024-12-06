@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from '../../hooks/useForm';
 
-const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
+const DoctorsModal = ({ onClose, doctorsList, isOpen }) => {
   const { values, handleChange, setValues, resetForm } = useForm({
     specialty: "",
     name: "",
@@ -24,7 +24,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addDoctor(values);
+    doctorsList
     resetActiveForm();
   };
 
@@ -111,8 +111,5 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
             value={values.notes}
             onChange={handleChange}
             />
-            </label>
       </ModalWithForm>
-};
-
-export default DoctorsModal;
+}

@@ -1,7 +1,5 @@
 import SetupProfile from "../SetupProfileModal/SetupProfileModal";
 import DoctorsModal from "../DoctorsModal/DoctorsModal";
-import EmergencyContactsModal from "../EmergencyContactsModal/EmergencyContactsModal";
-
 function Dashboard({ }) {
   return (
     <div className="dashboard">
@@ -15,19 +13,13 @@ function Dashboard({ }) {
           <div className="dashboard__hub-profile">
             <SetupProfile />
           </div>
-          <div className="dashboard__hub-doctor">
-            <DoctorsModal />
-          </div>
-          <div className="dashboard__hub-emergency">
-            <EmergencyContactsModal />
-          </div>
+          <div className="dashboard__hub-doctor"></div>
+          <div className="dashboard__hub-emergency"></div>
           <div className="dashboard__hub-medication"></div>
           <div className="dashboard__hub-calendar"></div>
         </div>
-      </section>
+      </section>"
     </div>
   );
 }
-
-export default Dashboard;
 

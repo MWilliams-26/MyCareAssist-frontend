@@ -1,6 +1,6 @@
 import SetupProfile from "../SetupProfileModal/SetupProfileModal";
 import DoctorsModal from "../DoctorsModal/DoctorsModal";
-import EmergencyContactsModal from "../EmergencyContactsModal/EmergencyContactsModal";
+im
 
 function Dashboard({ }) {
   return (
