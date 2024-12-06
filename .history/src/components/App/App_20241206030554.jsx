@@ -1,4 +1,4 @@
-import { Routes, Route,  } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from '../Header/Header';
@@ -6,8 +6,6 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import LoginModal from '../LoginModal/LoginModal';
-import Dashboard from '../Dashboard/Dashboard';
-
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -31,8 +29,6 @@ function App() {
     setActiveModal("");
   }
 
-  const handleRegistration = () => { };
-  const handleLogin = () => { };
 
   return (
     <div className="App">
@@ -48,13 +44,14 @@ function App() {
             />
           }
         />
-        <Route
-          path="/dashboard"
+        {/* <Route
+          path="/profile"
           element={
-            <Dashboard />
+            <Profile />
           }
-        />
+        /> */}
       </Routes>
+
       <Footer />
 
       <RegisterModal
@@ -67,7 +64,7 @@ function App() {
       <LoginModal
         isOpen={activeModal === "login"}
         onClose={closeActiveModal}
-        handleLogin={handleLogin}
+        handleLogin={handleRegistration}
         handleTextButton={handleRegistrationClick}
       />
 

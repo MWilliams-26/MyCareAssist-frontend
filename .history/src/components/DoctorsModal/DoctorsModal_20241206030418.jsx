@@ -78,19 +78,19 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
       <label className="modal__label">
         Address{""}
         <input
-          type="text"
-          className="modal__input"
-          id="address"
-          name="address"
-          placeholder="Enter address"
-          value={values.address}
-          onChange={handleChange}
-          required
+        type="text"
+        className="modal__input"
+        id="address"
+        name="address"
+        placeholder="Enter address"
+        value={values.address}
+        onChange={handleChange}
+        required
         />
-      </label>
-      <label className="modal__label">
-        Email{""}
-        <input
+        </label>
+        <label className="modal__label">
+          Email{""}
+          <input
           type="email"
           className="modal__input"
           id="email"
@@ -99,21 +99,21 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
           value={values.email}
           onChange={handleChange}
           required
-        />
-      </label>
-      <label className="modal__label">
-        Notes{""}
-        <textarea
-          className="modal__input"
-          id="notes"
-          name="notes"
-          placeholder="Enter notes"
-          value={values.notes}
-          onChange={handleChange}
-        />
-      </label>
-    </ModalWithForm>
-  );
+          />
+          </label>
+          <label className="modal__label">
+            Notes{""}
+            <textarea
+            className="modal__input"
+            id="notes"
+            name="notes"
+            placeholder="Enter notes"
+            value={values.notes}
+            onChange={handleChange}
+            />
+            </label>
+      </ModalWithForm>
+  )
 };
 
 export default DoctorsModal;

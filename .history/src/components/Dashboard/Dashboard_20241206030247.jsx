@@ -18,7 +18,7 @@ function Dashboard({ }) {
             <DoctorsModal />
           </div>
           <div className="dashboard__hub-emergency">
-            <EmergencyContacts />
+            <Emer />
           </div>
           <div className="dashboard__hub-medication"></div>
           <div className="dashboard__hub-calendar"></div>
