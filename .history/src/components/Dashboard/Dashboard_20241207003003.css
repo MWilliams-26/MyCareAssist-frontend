@@ -1,0 +1,57 @@
+.dashboard__header-title {
+  text-align: center;
+  font-family: "Goblin One", serif;
+  color:#013C38;
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.dashboard__header-greeting {
+  text-align: center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color:#013C38;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.dashboard__hub-container {
+  display: grid;
+  grid-template-areas:
+  "left calendar right"
+  "bottomLeft calendar bottomRight";
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.dashboard__hub-profile,
+.dashboard__hub-doctor {
+  background-color: #B4DDCF;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard__hub-calendar {
+  background-color: #B4DDCF;
+  padding: 20px;
+  border-radius: 10px;
+  grid-area: calendar;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.dashboard__hub-emergency,
+.dashboard__hub-medication {
+  background-color: #B4DDCF;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+

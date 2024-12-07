@@ -1,0 +1,7 @@
+.dashboard__hub-container {
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

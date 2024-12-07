@@ -1,0 +1,8 @@
+.dashboard__hub-container {
+  display: grid;
+  grid-template-areas:
+  "left calendar right"
+  "bottomLeft calendar bottomRight"
+  
+  gap: 10px;
+}
