@@ -57,6 +57,23 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.rbc-calendar {
+  width: 100% !important; /* Ensure it stretches to full width */
+  height: 100% !important; /* Ensure it stretches to full height */
+}
+
+.rbc-month-view {
+  height: 100% !important; /* Ensure month view stretches */
+}
+
+.rbc-time-view {
+  height: 100% !important; /* Ensure time view stretches */
+}
+
+.rbc-day-view {
+  height: 100% !important; /* Ensure day view stretches */
+}
+
 .dashboard__hub-emergency,
 .dashboard__hub-medication {
   background-color: #B4DDCF;

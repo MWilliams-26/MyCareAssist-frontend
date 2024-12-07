@@ -4,13 +4,13 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { gapi } from "gapi-script";
 
-const Calendar = () => {
+const CalendarComponent = () => {
   const [events, setEvents] = useState([]);
 
   const localizer = momentLocalizer(moment);
 
-  const CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
-  const API_KEY = "YOUR_API_KEY";
+  const CLIENT_ID = "273881584331-8ri21gc1og6tfu3l1r3v7na4fkc17452.apps.googleusercontent.com";
+  const API_KEY = "AIzaSyBcYJlJvPX-KAh9VuXYbJsifqbKtLdFiUI";
   const CALENDAR_ID = "primary"; // Can be your email or 'primary'
   const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
@@ -57,7 +57,7 @@ const Calendar = () => {
 
   return (
     <div>
-      <button onClick={handleAuthClick} style={{ marginBottom: "20px" }}>
+      <button onClick={handleAuthClick}>
         Connect Google Calendar
       </button>
       <Calendar
@@ -65,10 +65,9 @@ const Calendar = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
       />
     </div>
   );
 };
 
-export default Calendar;
+export default CalendarComponent;

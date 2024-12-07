@@ -1,8 +1,7 @@
 import SetupProfile from "../SetupProfileModal/SetupProfileModal";
 import DoctorsModal from "../DoctorsModal/DoctorsModal";
 import EmergencyContacts from "../EmergencyContactsModal/EmergencyContacts";
-import CalendarComponent from "../Calendar/CalendarComponent";
-import "./Dashboard.css";
+import import "./Dashboard.css";
 
 function Dashboard({ }) {
   return (
@@ -19,7 +18,7 @@ function Dashboard({ }) {
           </div>
           {/* Calendar Section */}
           <div className="dashboard__hub-calendar">
-            <CalendarComponent />
+            <Calendar />
           </div>
           {/*Right Section */}
           <div className="dashboard__hub-doctor">

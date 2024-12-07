@@ -19,7 +19,7 @@ function Dashboard({ }) {
           </div>
           {/* Calendar Section */}
           <div className="dashboard__hub-calendar">
-            <CalendarComponent />
+            <Calendar />
           </div>
           {/*Right Section */}
           <div className="dashboard__hub-doctor">

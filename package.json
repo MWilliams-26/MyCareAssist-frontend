@@ -12,6 +12,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "dom": "^0.0.3",
+    "gapi-script": "^1.2.0",
     "google-auth-library": "^9.15.0",
     "hello-vite": "file:",
     "react": "^18.3.1",

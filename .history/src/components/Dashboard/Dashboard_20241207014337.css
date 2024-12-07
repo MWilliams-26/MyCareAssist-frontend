@@ -46,10 +46,8 @@
 
 .dashboard__hub-calendar {
   background-color: #B4DDCF;
-  padding: 0;
+  padding: ;
   border-radius: 10px;
-  height: 100%;
-  width: 100%;
   grid-area: calendar;
   display: flex;
   justify-content: center;

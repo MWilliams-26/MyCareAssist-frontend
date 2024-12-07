@@ -1,7 +1,7 @@
 import SetupProfile from "../SetupProfileModal/SetupProfileModal";
 import DoctorsModal from "../DoctorsModal/DoctorsModal";
 import EmergencyContacts from "../EmergencyContactsModal/EmergencyContacts";
-import CalendarComponent from "../Calendar/CalendarComponent";
+import Cal
 import "./Dashboard.css";
 
 function Dashboard({ }) {
@@ -13,15 +13,13 @@ function Dashboard({ }) {
       </section>
       <section className="dashboard__hub">
         <div className="dashboard__hub-container">
-          {/* Left Section */}
+        {/* Left Section */}
           <div className="dashboard__hub-profile">
             <SetupProfile />SETUP PROFILE
           </div>
           {/* Calendar Section */}
-          <div className="dashboard__hub-calendar">
-            <CalendarComponent />
-          </div>
-          {/*Right Section */}
+          <div className="dashboard__hub-calendar">CALENDAR</div>
+          {/*Right Section */}                                                                                                                                                                                                                                                
           <div className="dashboard__hub-doctor">
             <DoctorsModal />DOCTORS
           </div>
