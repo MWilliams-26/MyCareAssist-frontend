@@ -10,13 +10,11 @@ const CalendarComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [events, setEvents] = useState([
     {
-      title: "Doctor's Appointment",
-      description: "Annual checkup",
-      start: new Date(2024, 10, 29, 10, 0),
-      end: new Date(2024, 10, 29, 11, 0),
+      title: "Event Title",
+      start: new Date(),
+      end: new Date(),
     },
   ]);
-  
 
   const handleAddEvent = (formValues) => {
     const newEvent = {
@@ -26,7 +24,6 @@ const CalendarComponent = () => {
       end: new Date(formValues.endDateTime),
     };
     
-    console.log('Adding new event:', newEvent); 
     setEvents([...events, newEvent]);
     setIsModalOpen(false); // Close modal after adding event
   };
@@ -95,7 +92,7 @@ const CalendarComponent = () => {
           </button>
         </div>
       </div>
-      
+
       {isModalOpen && (
   <div className="modal-overlay">
     <div className="modal-content">

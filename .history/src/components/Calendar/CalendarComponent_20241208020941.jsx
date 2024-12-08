@@ -21,7 +21,6 @@ const CalendarComponent = () => {
   const handleAddEvent = (formValues) => {
     const newEvent = {
       title: formValues.summary,
-      description: formValues.description,
       start: new Date(formValues.startDateTime),
       end: new Date(formValues.endDateTime),
     };

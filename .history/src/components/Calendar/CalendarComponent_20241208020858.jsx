@@ -11,9 +11,9 @@ const CalendarComponent = () => {
   const [events, setEvents] = useState([
     {
       title: "Doctor's Appointment",
-      description: "Annual checkup",
       start: new Date(2024, 10, 29, 10, 0),
       end: new Date(2024, 10, 29, 11, 0),
+      
     },
   ]);
   
@@ -21,7 +21,6 @@ const CalendarComponent = () => {
   const handleAddEvent = (formValues) => {
     const newEvent = {
       title: formValues.summary,
-      description: formValues.description,
       start: new Date(formValues.startDateTime),
       end: new Date(formValues.endDateTime),
     };
