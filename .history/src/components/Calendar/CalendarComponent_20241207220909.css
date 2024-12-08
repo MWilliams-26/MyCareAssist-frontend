@@ -1,0 +1,31 @@
+.calendar__container {
+  max-width: 800%;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+.calendar__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #013C38;
+}
+
+.calendar__link-button {
+  background-color: #013C38;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

@@ -1,0 +1,8 @@
+.calendar__container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  
+}

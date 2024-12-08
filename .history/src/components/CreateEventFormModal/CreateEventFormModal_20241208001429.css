@@ -1,0 +1,39 @@
+.event-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.event-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  color: #013C38;
+}
+
+.event-form textarea {
+  text-align: s;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  color: #013C38;
+}
+
+.event-form button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.event-form button:hover {
+  background-color: #45a049;
+}
