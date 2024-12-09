@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "727e",
+      "email": "abend@mail.com",
+      "name": "Fred Burns",
+      "password": "Firebe22"
+    },
+    {
+      "id": "5ba8",
+      "email": "abend@mail.com",
+      "name": "Fred Burns",
+      "password": "Firebe22"
+    },
+    {
+      "id": "f19b",
+      "email": "bass@mail.com",
+      "name": "Monica Dinwhite",
+      "password": "jojdd"
+    },
+    {
+      "id": "fe77",
+      "email": "bass@mail.com",
+      "name": "Winston Feebo",
+      "password": "jojdd"
+    },
+    {
+      "id": "0675",
+      "email": "Elle99@mail.com",
+      "name": "Victor Rembrine",
+      "password": "Michael26"
+    },
+    {
+      "id": "791e",
+      "email": "feniie@mail.com",
+      "name": "Amanda Reptuken",
+      "password": "miclo"
+    },
+    {
+      "id": "d85b",
+      "email": "jam@mail.com",
+      "name": "Frank Beanie",
+      "password": "testJ"
+    }
+  ]
+}
