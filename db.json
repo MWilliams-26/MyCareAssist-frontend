@@ -65,6 +65,12 @@
       "email": "abend@mail.com",
       "name": "Felix Pals",
       "password": "Firebe22"
+    },
+    {
+      "id": "a42e",
+      "email": "mow26@icloud.com",
+      "name": "Michael W",
+      "password": "felix"
     }
   ]
 }

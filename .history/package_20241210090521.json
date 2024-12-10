@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://MWilliams-26.github.io/MyCareAssist-frontend/",
+  "homepage": "https://MWilliams-26/MyCareAssist-frontend/",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
