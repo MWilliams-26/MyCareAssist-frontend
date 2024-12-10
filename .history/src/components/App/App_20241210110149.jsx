@@ -14,7 +14,6 @@ import EmergencyContacts from '../EmergencyContactsModal/EmergencyContacts';
 import { Register, Login } from '../../utils/auth';
 import { createProfile, getProfile, addDoctor } from '../../utils/api';
 import { use } from 'react';
-import { mockDoctors } from '../../utils/constants';
 
 
 function App() {

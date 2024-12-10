@@ -71,6 +71,18 @@
       "email": "mow26@icloud.com",
       "name": "Michael W",
       "password": "felix"
+    },
+    {
+      "id": "7dfc",
+      "email": "me@mail.com",
+      "name": "Fred Ogaro",
+      "password": "firo"
+    },
+    {
+      "id": "f2fe",
+      "email": "me@mail.com",
+      "name": "Michael Shaun",
+      "password": "fire"
     }
   ]
 }
