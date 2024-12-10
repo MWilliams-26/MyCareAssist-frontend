@@ -3,15 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/MWilliams-26/MyCareAssist-frontend",
+  "homepage": "https://github.com/MWilliams-26/MyCareAssist-frontend"
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "json-server --watch db.json --port 3001",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
