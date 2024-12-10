@@ -1,5 +1,0 @@
-impor
-
-const SetupProfile = ({}) => {
-  return ()
-}

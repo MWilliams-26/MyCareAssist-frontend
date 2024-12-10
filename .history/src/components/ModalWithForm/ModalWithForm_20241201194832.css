@@ -1,5 +1,0 @@
-const ModalWithForm = ({ title, buttonText, onSubmit, children }) => {
-  return (
-    <div></div>
-  )
-};

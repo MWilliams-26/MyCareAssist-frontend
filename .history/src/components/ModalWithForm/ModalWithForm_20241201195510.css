@@ -1,7 +1,0 @@
-import Close from '../../assets/'
-
-const ModalWithForm = ({ title, buttonText, redirectText, handleTextButton, children, onClose, isOpen, onSubmit }) => {
-  return (
-    <div></div>
-  )
-};

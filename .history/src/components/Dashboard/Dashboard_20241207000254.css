@@ -1,6 +1,0 @@
-.dashboard__hub-container {
-  display: grid;
-  grid-template-areas:
-  "left cal
-  gap: 10px;
-}
