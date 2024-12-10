@@ -41,6 +41,30 @@
       "email": "jam@mail.com",
       "name": "Frank Beanie",
       "password": "testJ"
+    },
+    {
+      "id": "92a9",
+      "email": "lover@mail.com",
+      "name": "Reginald Fenlari",
+      "password": "wowza"
+    },
+    {
+      "id": "9a74",
+      "email": "ass@mail.com",
+      "name": "Fendi massu",
+      "password": "joj"
+    },
+    {
+      "id": "1e5a",
+      "email": "fionadd@mail.com",
+      "name": "Rachel Jakenem",
+      "password": "fioann"
+    },
+    {
+      "id": "431f",
+      "email": "abend@mail.com",
+      "name": "Felix Pals",
+      "password": "Firebe22"
     }
   ]
 }

@@ -1,0 +1,126 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0000004D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  z
+}
+
+.modal_opened {
+  visibility: visible;
+}
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__title {
+  margin: 0;
+  margin-bottom: 24px;
+  font-family: "Goblin One", serif;
+}
+
+.modal__content {
+  background-color: #fff;
+  border-radius: 20px;
+  max-height: 610px;
+  max-width: 496px;
+  padding: 28px 28px 36px;
+  position: fixed;
+  /* width: 100%; */
+}
+
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  font-family: "Goblin One", serif;
+}
+
+.modal__label {
+  width: 440px;
+  font-family: "Goblin One", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__input {
+  display: block;
+  width: 440px;
+  height: 24px;
+  top: 293px;
+  left: 500px;
+  border: none;
+  background: #FFFFFF;
+  border-bottom: 1px solid #000000;
+  padding: 8px 0 0;
+}
+
+.modal__legend {
+  font-family: "Goblin One", serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding-bottom: 12px;
+}
+
+.modal__radio-buttons {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__button_container {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.modal__submit {
+  border: none;
+  width: 124px;
+  height: 36px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #000000;
+  font-family: "Goblin One", serif;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004D;
+}
+
+.modal__submit:hover {
+  opacity: 0.8;
+}
+
+.modal__text-button {
+  border: none;
+  background-color: #fff;
+  color: #0000004D;
+  cursor: pointer;
+  font-family: "Goblin One", serif;
+}

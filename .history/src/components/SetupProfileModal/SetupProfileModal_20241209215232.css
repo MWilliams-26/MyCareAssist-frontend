@@ -1,0 +1,40 @@
+.setup__profile-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  ma
+}
+
+.setup__profile-container .modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.setup__profile-container .modal__input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.measurement-group {
+  width: 100%;
+}
+
+.measurement-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.measurement-inputs input {
+  flex: 2;
+}
+
+.measurement-inputs select {
+  flex: 1;
+}
