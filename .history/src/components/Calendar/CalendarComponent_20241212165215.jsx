@@ -8,10 +8,10 @@ import "./CalendarComponent.css";
 import close from "../../assets/close.svg";
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
-  console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+  onsole.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
   console.log("Google API Key:", import.meta.env.VITE_GOOGLE_API_KEY);
   console.log("Google Calendar Scopes:", import.meta.env.VITE_GOOGLE_CALENDAR_SCOPES);
-
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState(null);
   const [error, setError] = useState(null);
