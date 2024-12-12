@@ -101,6 +101,24 @@
       "email": "abend@mail.com",
       "name": "felix paul",
       "password": "Firebe22"
+    },
+    {
+      "id": "2eab",
+      "email": "feniie@mail.com",
+      "name": "James Finen",
+      "password": "miclo"
+    },
+    {
+      "id": "9ff4",
+      "email": "mow26@icloud.com",
+      "name": "Michael Williams",
+      "password": "foxtrot"
+    },
+    {
+      "id": "f36a",
+      "email": "gma@mail.com",
+      "name": "Greg pascal",
+      "password": "mow555"
     }
   ]
 }
