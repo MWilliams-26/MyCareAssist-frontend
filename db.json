@@ -119,6 +119,18 @@
       "email": "gma@mail.com",
       "name": "Greg pascal",
       "password": "mow555"
+    },
+    {
+      "id": "047d",
+      "email": "low@mail.com",
+      "name": "Wendy cheeks",
+      "password": "firebird"
+    },
+    {
+      "id": "241a",
+      "email": "Wendyli@mail.com",
+      "name": "Wendy Lion",
+      "password": "wendyli"
     }
   ]
 }

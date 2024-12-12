@@ -57,7 +57,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     const client = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events.readonly",
-      redirect_uri: "http://localhost:3000/callback",
+      
       callback: (response) => {
         if (response.error) {
           console.error("Authentication error:", response);
