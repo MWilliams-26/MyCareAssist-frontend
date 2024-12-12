@@ -3,9 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   base: "/MyCareAssist-frontend/",
-  build: {
-    sourcemap: true,
-  }
+  
   plugins: [react()],
   server: {
     port: 3000,

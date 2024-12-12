@@ -131,6 +131,12 @@
       "email": "Wendyli@mail.com",
       "name": "Wendy Lion",
       "password": "wendyli"
+    },
+    {
+      "id": "57f2",
+      "email": "Denis@mail.com",
+      "name": "Denis Lawcrof",
+      "password": "denisv"
     }
   ]
 }

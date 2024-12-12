@@ -54,14 +54,12 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleAuthClick = async () => {
     setLoading(true);
 
-    const redirectUri = window.location.pathname === '/callback'
-    ? 'http://localhost:3000/callback'
-    : 'http://localhost:3000/oauth2callback';
+    
 
     const client = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events.readonly",
-      redirect_uri: redirectUri,
+      redirect_uri: "http://localhost:3000/callback",
       callback: (response) => {
         if (response.error) {
           console.error("Authentication error:", response);
