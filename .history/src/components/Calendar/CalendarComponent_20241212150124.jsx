@@ -54,9 +54,9 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleAuthClick = async () => {
     setLoading(true);
 
-    const redirectUri = window.location.hostname === '/callback'
+    const redirectUri = window.location.host === '/callback'
     ? 'http://localhost:3000/callback'
-    : 'https://mwilliams-26.github.io/MyCareAssist-frontend/callback';
+    : 'http://localhost:3000/oauth2callback';
 
     const client = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
