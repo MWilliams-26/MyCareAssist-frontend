@@ -8,10 +8,10 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://www.googleapis.com',
+        target: 'https://www.googleapis.com', // Target the Google API server
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''), 
+        rewrite: (path) => path.replace(/^\/api/, ''), // Rewrite the path if needed
       },
     },
   },
