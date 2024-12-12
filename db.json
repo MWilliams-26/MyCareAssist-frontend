@@ -95,6 +95,12 @@
       "email": "abend@mail.com",
       "name": "William Ferti",
       "password": "Firebe22"
+    },
+    {
+      "id": "bb28",
+      "email": "abend@mail.com",
+      "name": "felix paul",
+      "password": "Firebe22"
     }
   ]
 }

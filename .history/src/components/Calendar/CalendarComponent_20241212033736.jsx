@@ -53,30 +53,25 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const handleAuthClick = async () => {
     setLoading(true);
-
-    const client = google.accounts.oauth2.initTokenClient({
+    google.accounts.id.initialize({
       client_id: CLIENT_ID,
-      scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events.readonly",
       callback: (response) => {
         if (response.error) {
-          console.error("Authentication error:", response);
           setError("Authentication failed");
-          setLoading(false);
           return;
         }
 
+        // Use the new API to fetch user information
         google.accounts.oauth2.getUserInfo()
-          .then((userInfo) => {
+          .then(userInfo => {
             setUserName(userInfo.name || 'Google User');
-            console.log("User authenticated:", userInfo.name);
             loadCalendarEvents(response.access_token);
           })
-          .catch((err) => {
-            console.error("Failed to fetch user info:", err);
+          .catch(err => {
+            console.error('Failed to fetch user info:', err);
+            setError("Failed to fetch user info");
           });
-        setError(null);
-        setLoading(false);
-      },
+      }
     });
     client.requestAccessToken();
   };
@@ -118,13 +113,13 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       end: new Date(formValues.endDateTime),
     };
     setEvents([...events, newEvent]);
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close modal after adding event
   };
 
   const localizer = momentLocalizer(moment);
 
   return (
-    <div className="calendar__container" >
+    <div className="calendar__container">
       <div className="calendar__header">
         <h2 className="calendar__title">My Calendar</h2>
         {userName && <div>Welcome, {userName}!</div>}
@@ -150,18 +145,16 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
       {error && <div className="error-message">{error}</div>}
 
-      {
-        isModalOpen && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button className="close-modal" onClick={handleModalClose}>
-                <img src={close} alt="close" className="modal__close-btn" />
-              </button>
-              <CreateEventFormModal onEventSubmit={handleAddEvent} onClose={handleModalClose} />
-            </div>
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-modal" onClick={handleModalClose}>
+              <img src={close} alt="close" className="modal__close-btn" />
+            </button>
+            <CreateEventFormModal onEventSubmit={handleAddEvent} onClose={handleModalClose} />
           </div>
-        )
-      }
+        </div>
+      )}
 
       <Calendar
         localizer={localizer}
@@ -170,7 +163,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         endAccessor="end"
         style={{ height: 'calc(100% - 80px)' }}
       />
-    </div >
+    </div>
   );
 };
 

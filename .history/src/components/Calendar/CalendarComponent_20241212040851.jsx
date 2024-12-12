@@ -53,7 +53,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const handleAuthClick = async () => {
     setLoading(true);
-
+    
     const client = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events.readonly",
@@ -118,7 +118,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       end: new Date(formValues.endDateTime),
     };
     setEvents([...events, newEvent]);
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close modal after adding event
   };
 
   const localizer = momentLocalizer(moment);
