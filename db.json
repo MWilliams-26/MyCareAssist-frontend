@@ -83,6 +83,18 @@
       "email": "me@mail.com",
       "name": "Michael Shaun",
       "password": "fire"
+    },
+    {
+      "id": "2c26",
+      "email": "low@mail.com",
+      "name": "William Ferti",
+      "password": "firecratt"
+    },
+    {
+      "id": "d927",
+      "email": "abend@mail.com",
+      "name": "William Ferti",
+      "password": "Firebe22"
     }
   ]
 }

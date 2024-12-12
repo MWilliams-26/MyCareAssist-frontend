@@ -1,0 +1,9 @@
+.footer {
+  margin-top: 20px; /* Brings the footer closer to the benefits list */
+  text-align: center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: #013C38;
+  background-color: #f4f4f4;
+  padding: 10px 0;
+  font-size: 14px;
+}
