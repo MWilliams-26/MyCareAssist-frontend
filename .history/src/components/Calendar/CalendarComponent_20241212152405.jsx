@@ -54,7 +54,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleAuthClick = async () => {
     setLoading(true);
 
-    const redirectUri = window.location.pathname === '/callback'
+    const redirectUri = window.location.path === '/callback'
     ? 'http://localhost:3000/callback'
     : 'http://localhost:3000/oauth2callback';
 
@@ -72,7 +72,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
         google.accounts.oauth2.getUserInfo()
           .then((userInfo) => {
-            setUserName(userInfo.name || '');
+            setUserName(userInfo.name || 'Google User');
             console.log("User authenticated:", userInfo.name);
             loadCalendarEvents(response.access_token);
           })

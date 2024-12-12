@@ -72,7 +72,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
         google.accounts.oauth2.getUserInfo()
           .then((userInfo) => {
-            setUserName(userInfo.name || '');
+            setUserName(userInfo.name || 'Google User');
             console.log("User authenticated:", userInfo.name);
             loadCalendarEvents(response.access_token);
           })
