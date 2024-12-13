@@ -26,7 +26,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
- 
+
   useEffect(() => {
     const loadGoogleApi = async () => {
       if (!window.gapi) {
@@ -54,12 +54,17 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       }
     };
 
-    loadGoogleApi();
+    if (window.gapi) {
+      loadGoogleApi();
+    } else {
+      setError("Google API not available.");
+    }
   }, [API_KEY, CLIENT_ID, SCOPES]);
- 
+
+
   const handleAuthClick = () => {
     setLoading(true);
-
+  
     const tokenClient = window.google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: SCOPES,
@@ -70,24 +75,26 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           setLoading(false);
           return;
         }
-        
+  
         try {
+          // Fetch user info (optional but helpful for personalization)
           const userInfoResponse = await window.gapi.client.request({
             path: "https://www.googleapis.com/oauth2/v3/userinfo",
           });
-          setUserName(userInfoResponse.result.name || userInfoResponse.result.email);
+          setUserName(userInfoResponse.result.name); // Or use email: userInfoResponse.result.email
         } catch (err) {
           console.error("Failed to get user info:", err);
         }
-        
+  
         loadCalendarEvents(tokenResponse.access_token);
         setLoading(false);
       },
     });
-
+  
     tokenClient.requestAccessToken();
   };
   
+
   const loadCalendarEvents = async (accessToken) => {
     try {
       if (!window.gapi) {
@@ -104,7 +111,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
       const loadedEvents = response.result.items.map((event) => ({
         title: event.summary,
-        description: event.description || "No description",
         start: new Date(event.start.dateTime || event.start.date),
         end: new Date(event.end.dateTime || event.end.date),
       }));
@@ -115,32 +121,16 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       setError("Failed to load calendar events");
     }
   };
-  
-  const handleAddEvent = async (formValues) => {
-    const newEvent = {
-      summary: formValues.summary,
-      description: formValues.description,
-      start: {
-        dateTime: new Date(formValues.startDateTime).toISOString(),
-        timeZone: 'UTC',
-      },
-      end: {
-        dateTime: new Date(formValues.endDateTime).toISOString(),
-        timeZone: 'UTC',
-      },
-    };
 
-    try {
-      await window.gapi.client.calendar.events.insert({
-        calendarId: 'primary', 
-        resource: newEvent,
-      });
-      setEvents((prevEvents) => [...prevEvents, newEvent]);
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error("Error adding event to Google Calendar:", error);
-      setError("Failed to add event to Google Calendar.");
-    }
+  const handleAddEvent = (formValues) => {
+    const newEvent = {
+      title: formValues.summary,
+      description: formValues.description,
+      start: new Date(formValues.startDateTime),
+      end: new Date(formValues.endDateTime),
+    };
+    setEvents([...events, newEvent]);
+    setIsModalOpen(false);
   };
 
   const handleSignOut = () => {

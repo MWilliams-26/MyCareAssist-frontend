@@ -26,7 +26,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
- 
+
+  // Load Google API
   useEffect(() => {
     const loadGoogleApi = async () => {
       if (!window.gapi) {
@@ -56,7 +57,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
     loadGoogleApi();
   }, [API_KEY, CLIENT_ID, SCOPES]);
- 
+
+  // OAuth authentication handler
   const handleAuthClick = () => {
     setLoading(true);
 
@@ -70,16 +72,18 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           setLoading(false);
           return;
         }
-        
+
+        // Fetch user info
         try {
           const userInfoResponse = await window.gapi.client.request({
             path: "https://www.googleapis.com/oauth2/v3/userinfo",
           });
-          setUserName(userInfoResponse.result.name || userInfoResponse.result.email);
+          setUserName(userInfoResponse.result.name || userInfoResponse.result.email); // Use name or email
         } catch (err) {
           console.error("Failed to get user info:", err);
         }
-        
+
+        // Load Google Calendar events
         loadCalendarEvents(tokenResponse.access_token);
         setLoading(false);
       },
@@ -87,7 +91,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
     tokenClient.requestAccessToken();
   };
-  
+
+  // Load calendar events from Google Calendar
   const loadCalendarEvents = async (accessToken) => {
     try {
       if (!window.gapi) {

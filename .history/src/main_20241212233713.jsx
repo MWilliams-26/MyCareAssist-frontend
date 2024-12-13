@@ -5,12 +5,13 @@ import { GoogleOAuthProvider } from '@react-oauth/google'; // Import GoogleOAuth
 import App from "./components/App/App";
 import './index.css';
 
-const clientId = "273881584331-8ri21gc1og6tfu3l1r3v7na4fkc17452.apps.googleusercontent.com";
+// Replace with your actual Google Client ID
+const clientId = "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/MyCareAssist-frontend/">
-      <GoogleOAuthProvider clientId={clientId}>
+      <GoogleOAuthProvider clientId={clientId}> {/* Wrap your app with GoogleOAuthProvider */}
         <App />
       </GoogleOAuthProvider>
     </BrowserRouter>

@@ -26,7 +26,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
- 
+
+  // Load Google API
   useEffect(() => {
     const loadGoogleApi = async () => {
       if (!window.gapi) {
@@ -56,7 +57,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
     loadGoogleApi();
   }, [API_KEY, CLIENT_ID, SCOPES]);
- 
+
+  // OAuth authentication handler
   const handleAuthClick = () => {
     setLoading(true);
 
