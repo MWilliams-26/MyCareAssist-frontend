@@ -6,24 +6,15 @@ import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calender.config";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
 import close from "../../assets/close.svg";
-import { ClipLoader } from "react-spinners";
-import { fetchGoogleCalendarEvents, addEventToGoogleCalendar } from "../../utils/api"; // Import API functions
 
+// Helper function to handle errors
 const handleError = (error, setEvents) => {
   console.error(error);
   setEvents((prevEvents) => ({
     ...prevEvents,
     loading: false,
-    error: error.message || "An unexpected error occurred.",
+    error: error.message || "Something went wrong.",
   }));
-};
-
-const loadGoogleScript = (setGoogleApiLoaded) => {
-  const script = document.createElement("script");
-  script.src = "https://accounts.google.com/gsi/client";
-  script.async = true;
-  script.onload = () => setGoogleApiLoaded(true);
-  document.body.appendChild(script);
 };
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
@@ -35,16 +26,25 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     error: null,
   });
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken, setAccessToken] = useState(null); // Store access token here
 
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
+  // Load Google Sign-In script
   useEffect(() => {
-    if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
+    if (!googleApiLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      script.onload = () => setGoogleApiLoaded(true);
+      document.body.appendChild(script);
+    }
 
     return () => {
       const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
-      if (scriptElement) scriptElement.remove();
+      if (scriptElement) {
+        scriptElement.remove();
+      }
     };
   }, [googleApiLoaded]);
 
@@ -53,7 +53,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       window.google.accounts.id.initialize({
         client_id: CLIENT_ID,
         callback: handleAuthSuccess,
-        scope: SCOPES,
+        scope: SCOPES,  // Ensure this scope matches the Calendar API scope
       });
 
       window.google.accounts.id.renderButton(document.getElementById("google-signin-button"), {
@@ -92,20 +92,78 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     }));
 
     try {
-      const calendarEvents = await fetchGoogleCalendarEvents(token, CALENDAR_ID);
-      setEvents({
-        data: calendarEvents,
-        loading: false,
-        error: null,
-      });
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?timeMin=${new Date().toISOString()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to load calendar events");
+      }
+
+      const data = await response.json();
+
+      if (data.items && Array.isArray(data.items)) {
+        const loadedEvents = data.items.map((event) => ({
+          title: event.summary,
+          description: event.description || "No description",
+          start: new Date(event.start.dateTime || event.start.date),
+          end: new Date(event.end.dateTime || event.end.date),
+        }));
+
+        setEvents({
+          data: loadedEvents,
+          loading: false,
+          error: null,
+        });
+      } else {
+        setEvents({
+          ...events,
+          loading: false,
+          error: "No events found.",
+        });
+      }
     } catch (err) {
       handleError(err, setEvents);
     }
   };
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
+    const event = {
+      summary: newEvent.title,
+      description: newEvent.description,
+      start: {
+        dateTime: newEvent.start.toISOString(),
+        timeZone: "UTC",
+      },
+      end: {
+        dateTime: newEvent.end.toISOString(),
+        timeZone: "UTC",
+      },
+    };
+
     try {
-      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(event),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to create event in Google Calendar");
+      }
+      const data = await response.json();
+      console.log("Event created:", data);
+      // Update local events after creation
       setEvents((prevEvents) => ({
         data: [
           ...prevEvents.data,
@@ -128,8 +186,8 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     window.google.accounts.id.disableAutoSelect();
     setUserName(null);
     setEvents({ loading: false, data: [], error: null });
-    setAccessToken(null);
     onGoogleSignOut && onGoogleSignOut();
+    console.log("User signed out");
   };
 
   const localizer = momentLocalizer(moment);
@@ -138,12 +196,12 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     <div className="calendar__container">
       <div className="calendar__header">
         <h2 className="calendar__title">My Calendar</h2>
-        {userName && <div className="calendar__username">Welcome, {userName}!</div>}
+        {userName && <div>Welcome, {userName}!</div>}
         <div className="calendar__buttons">
           <button
             className="calendar__btn"
             onClick={() => setIsModalOpen(true)}
-            disabled={isModalOpen || events.loading}
+            disabled={isModalOpen}
           >
             Create Event
           </button>
@@ -152,32 +210,32 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
               Sign Out
             </button>
           ) : (
-            <div id="google-signin-button"></div>
+            <div id="google-signin-button"></div> // Google Sign-In button will be rendered here
           )}
         </div>
       </div>
 
-      {events.error && (
-        <div className="error-message">
-          <strong>Error:</strong> {events.error}
-        </div>
-      )}
+      {events.error && <div className="error-message">{events.error}</div>}
 
       {isModalOpen && (
-        <div className="modal-overlay" role="dialog" aria-labelledby="create-event-modal" aria-hidden={!isModalOpen}>
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-labelledby="create-event-modal"
+          aria-hidden={!isModalOpen}
+        >
           <div className="modal-content">
             <button
               className="close-modal"
               onClick={() => setIsModalOpen(false)}
               disabled={events.loading}
-              aria-label="Close modal"
             >
               <img src={close} alt="close" className="modal__close-btn" />
             </button>
             <CreateEventFormModal
               onEventSubmit={async (newEvent) => {
-                await createEventOnGoogleCalendar(newEvent, accessToken);
-                setIsModalOpen(false);
+                await createEventOnGoogleCalendar(newEvent, accessToken); // Pass the access token here
+                setIsModalOpen(false); // Close the modal after event is created
               }}
               onClose={() => setIsModalOpen(false)}
             />
@@ -186,10 +244,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       )}
 
       {events.loading ? (
-        <div className="loading-message">
-          <ClipLoader color={"#123abc"} loading={events.loading} size={50} />
-          <p>Loading events...</p>
-        </div>
+        <div className="loading-message">Loading events...</div>
       ) : (
         <Calendar
           localizer={localizer}
@@ -197,7 +252,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           startAccessor="start"
           endAccessor="end"
           style={{ height: "calc(100% - 80px)" }}
-          popup
         />
       )}
     </div>

@@ -7,7 +7,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
 import close from "../../assets/close.svg";
 import { ClipLoader } from "react-spinners";
-import { fetchGoogleCalendarEvents, addEventToGoogleCalendar } from "../../utils/api"; // Import API functions
+import { useGoogleLogin } from '@react-oauth/google';
 
 const handleError = (error, setEvents) => {
   console.error(error);
@@ -39,37 +39,21 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
+  const { login, googleUser, isAuthenticated } = useGoogleLogin({
+    onSuccess: (response) => {
+      const token = response.access_token;
+      setAccessToken(token);
+      fetchUserInfo(token);
+      loadCalendarEvents(token);
+    },
+    scope: SCOPES,
+  });
+
   useEffect(() => {
-    if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
-
-    return () => {
-      const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
-      if (scriptElement) scriptElement.remove();
-    };
-  }, [googleApiLoaded]);
-
-  useEffect(() => {
-    if (googleApiLoaded) {
-      window.google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: handleAuthSuccess,
-        scope: SCOPES,
-      });
-
-      window.google.accounts.id.renderButton(document.getElementById("google-signin-button"), {
-        theme: "outline",
-        size: "large",
-        text: "sign_in_with",
-      });
+    if (googleUser && isAuthenticated) {
+      fetchUserInfo(googleUser.token);
     }
-  }, [googleApiLoaded]);
-
-  const handleAuthSuccess = (response) => {
-    const token = response.credential;
-    setAccessToken(token);
-    fetchUserInfo(token);
-    loadCalendarEvents(token);
-  };
+  }, [googleUser, isAuthenticated]);
 
   const fetchUserInfo = async (token) => {
     try {
@@ -92,20 +76,77 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     }));
 
     try {
-      const calendarEvents = await fetchGoogleCalendarEvents(token, CALENDAR_ID);
-      setEvents({
-        data: calendarEvents,
-        loading: false,
-        error: null,
-      });
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?timeMin=${new Date().toISOString()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error("Failed to load calendar events. " + (errorDetails.error.message || ""));
+      }
+
+      const data = await response.json();
+      if (data.items && Array.isArray(data.items)) {
+        const loadedEvents = data.items.map((event) => ({
+          title: event.summary,
+          description: event.description || "No description",
+          start: new Date(event.start.dateTime || event.start.date),
+          end: new Date(event.end.dateTime || event.end.date),
+        }));
+
+        setEvents({
+          data: loadedEvents,
+          loading: false,
+          error: null,
+        });
+      } else {
+        setEvents({
+          ...events,
+          loading: false,
+          error: "No events found.",
+        });
+      }
     } catch (err) {
       handleError(err, setEvents);
     }
   };
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
+    const event = {
+      summary: newEvent.title,
+      description: newEvent.description,
+      start: {
+        dateTime: newEvent.start.toISOString(),
+        timeZone: "UTC",
+      },
+      end: {
+        dateTime: newEvent.end.toISOString(),
+        timeZone: "UTC",
+      },
+    };
+
     try {
-      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(event),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to create event in Google Calendar");
+      }
+      const data = await response.json();
+      console.log("Event created:", data);
       setEvents((prevEvents) => ({
         data: [
           ...prevEvents.data,
@@ -125,7 +166,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   };
 
   const handleSignOut = () => {
-    window.google.accounts.id.disableAutoSelect();
     setUserName(null);
     setEvents({ loading: false, data: [], error: null });
     setAccessToken(null);
@@ -152,7 +192,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
               Sign Out
             </button>
           ) : (
-            <div id="google-signin-button"></div>
+            <button onClick={() => login()} className="calendar__btn">Sign In with Google</button>
           )}
         </div>
       </div>

@@ -137,6 +137,12 @@
       "email": "Denis@mail.com",
       "name": "Denis Lawcrof",
       "password": "denisv"
+    },
+    {
+      "id": "8ea6",
+      "email": "avery@mail.com",
+      "name": "Avery Mcalister",
+      "password": "window"
     }
   ]
 }

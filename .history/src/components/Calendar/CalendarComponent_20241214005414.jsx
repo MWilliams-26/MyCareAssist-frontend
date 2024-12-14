@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import { Calendar, localizer } from "react-big-calendar"; // Localizer from date-fns now
+import { format, parseISO } from "date-fns"; // Importing date-fns functions
 import CreateEventFormModal from "../CreateEventFormModal/CreateEventFormModal";
 import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calender.config";
+import { googleSignIn, fetchUserInfo, loadCalendarEvents, createCalendarEvent } from ; // Import functions from api.js
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
 import close from "../../assets/close.svg";
 import { ClipLoader } from "react-spinners";
-import { fetchGoogleCalendarEvents, addEventToGoogleCalendar } from "../../utils/api"; // Import API functions
 
+// Date formatting function
+const formatEventDate = (event) => ({
+  title: event.summary,
+  description: event.description || "No description",
+  start: parseISO(event.start.dateTime || event.start.date), // parse using date-fns
+  end: parseISO(event.end.dateTime || event.end.date),       // parse using date-fns
+});
+
+// Helper function to handle errors
 const handleError = (error, setEvents) => {
   console.error(error);
   setEvents((prevEvents) => ({
@@ -18,15 +27,7 @@ const handleError = (error, setEvents) => {
   }));
 };
 
-const loadGoogleScript = (setGoogleApiLoaded) => {
-  const script = document.createElement("script");
-  script.src = "https://accounts.google.com/gsi/client";
-  script.async = true;
-  script.onload = () => setGoogleApiLoaded(true);
-  document.body.appendChild(script);
-};
-
-const CalendarComponent = ({ onGoogleSignOut }) => {
+const CalendarComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState(null);
   const [events, setEvents] = useState({
@@ -39,62 +40,31 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
+  // Initialize Google Sign-In API on load
   useEffect(() => {
-    if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
+    googleSignIn(CLIENT_ID, SCOPES, async (token) => {
+      setAccessToken(token);
+      try {
+        const userInfo = await fetchUserInfo(token);
+        setUserName(userInfo.name || userInfo.email);
+        loadCalendarEventsData(token);
+      } catch (err) {
+        handleError(err, setEvents);
+      }
+    });
+  }, []);
 
-    return () => {
-      const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
-      if (scriptElement) scriptElement.remove();
-    };
-  }, [googleApiLoaded]);
-
-  useEffect(() => {
-    if (googleApiLoaded) {
-      window.google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: handleAuthSuccess,
-        scope: SCOPES,
-      });
-
-      window.google.accounts.id.renderButton(document.getElementById("google-signin-button"), {
-        theme: "outline",
-        size: "large",
-        text: "sign_in_with",
-      });
-    }
-  }, [googleApiLoaded]);
-
-  const handleAuthSuccess = (response) => {
-    const token = response.credential;
-    setAccessToken(token);
-    fetchUserInfo(token);
-    loadCalendarEvents(token);
-  };
-
-  const fetchUserInfo = async (token) => {
-    try {
-      const userInfoResponse = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await userInfoResponse.json();
-      setUserName(data.name || data.email);
-    } catch (err) {
-      handleError(err, setEvents);
-    }
-  };
-
-  const loadCalendarEvents = async (token) => {
+  const loadCalendarEventsData = async (token) => {
     setEvents((prevEvents) => ({
       ...prevEvents,
       loading: true,
     }));
 
     try {
-      const calendarEvents = await fetchGoogleCalendarEvents(token, CALENDAR_ID);
+      const data = await loadCalendarEvents(CALENDAR_ID, token);
+      const loadedEvents = data.map((event) => formatEventDate(event));
       setEvents({
-        data: calendarEvents,
+        data: loadedEvents,
         loading: false,
         error: null,
       });
@@ -103,22 +73,15 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     }
   };
 
-  const createEventOnGoogleCalendar = async (newEvent, token) => {
+  const handleCreateEvent = async (newEvent) => {
     try {
-      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      const createdEvent = await createCalendarEvent(CALENDAR_ID, accessToken, newEvent);
       setEvents((prevEvents) => ({
-        data: [
-          ...prevEvents.data,
-          {
-            title: newEvent.title,
-            description: newEvent.description,
-            start: newEvent.start,
-            end: newEvent.end,
-          },
-        ],
+        data: [...prevEvents.data, formatEventDate(createdEvent)],
         loading: false,
         error: null,
       }));
+      setIsModalOpen(false);
     } catch (err) {
       handleError(err, setEvents);
     }
@@ -129,23 +92,22 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     setUserName(null);
     setEvents({ loading: false, data: [], error: null });
     setAccessToken(null);
-    onGoogleSignOut && onGoogleSignOut();
   };
 
-  const localizer = momentLocalizer(moment);
+  const localizer = localizer(format);
 
   return (
     <div className="calendar__container">
       <div className="calendar__header">
-        <h2 className="calendar__title">My Calendar</h2>
+        <h2 className="calendar__title">Schedule Appointment</h2>
         {userName && <div className="calendar__username">Welcome, {userName}!</div>}
         <div className="calendar__buttons">
           <button
             className="calendar__btn"
             onClick={() => setIsModalOpen(true)}
-            disabled={isModalOpen || events.loading}
+            disabled={isModalOpen || !userName}
           >
-            Create Event
+            Create Appointment
           </button>
           {userName ? (
             <button className="calendar__link-btn" onClick={handleSignOut}>
@@ -169,16 +131,12 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
             <button
               className="close-modal"
               onClick={() => setIsModalOpen(false)}
-              disabled={events.loading}
               aria-label="Close modal"
             >
               <img src={close} alt="close" className="modal__close-btn" />
             </button>
             <CreateEventFormModal
-              onEventSubmit={async (newEvent) => {
-                await createEventOnGoogleCalendar(newEvent, accessToken);
-                setIsModalOpen(false);
-              }}
+              onEventSubmit={handleCreateEvent}
               onClose={() => setIsModalOpen(false)}
             />
           </div>
