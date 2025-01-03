@@ -32,27 +32,6 @@
   border-color: #2196f3;
   box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
 }
-.setup__profile-container .modal__submit {
-  height: 48px;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #013C38;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 32px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-top: 20px;
-}
-
-.setup__profile-container .modal__submit:hover {
-  background-color: #025751;
-}
-
-.setup__profile-container .modal__submit:active {
-  transform: scale(0.98);
-}
 
 .full-width {
   grid-column: 1 / -1;
@@ -89,6 +68,7 @@ select.modal__input {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   border: 1px solid #eee;
@@ -102,21 +82,4 @@ select.modal__input {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 12px;
-}
-.address-group {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 20px;
-}
-
-.address-line {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.city-state-zip {
-  display: grid;
-  grid-template-columns: 1fr 0.5fr 0.5fr;
-  gap: 20px;
 }

@@ -90,6 +90,46 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
       required: field.required
     };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (selectFields[field.name]) {
       return (
         <label className="modal__label" key={field.name}>
@@ -137,6 +177,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     resetForm();
     onClose();
   };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -147,7 +188,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     >
       <div className="setup__profile-container">
         {Object.entries(formFields).map(([section, fields]) => (
-          <div key={section} className="profile-info-group">
+          <div key={section}>
             {fields.map(renderField)}
           </div>
         ))}

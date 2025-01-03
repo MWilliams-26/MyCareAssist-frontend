@@ -137,6 +137,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     resetForm();
     onClose();
   };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -146,7 +147,44 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
       onSubmit={handleSubmit}
     >
       <div className="setup__profile-container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {Object.entries(formFields).map(([section, fields]) => (
+
           <div key={section} className="profile-info-group">
             {fields.map(renderField)}
           </div>

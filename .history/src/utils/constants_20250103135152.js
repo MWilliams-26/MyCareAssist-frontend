@@ -139,10 +139,29 @@ export const formFields = {
   ],
   measurements: [
     {
+
+
+
       name: 'heightFeet',
       label: 'Height (ft)',
       type: 'select',
       required: true,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       options: Array.from({ length: 8 }, (_, i) => ({
         value: String(i + 1),
         label: `${i + 1} ft`
@@ -159,26 +178,29 @@ export const formFields = {
       }))
     },
     {
-      name: 'weightValue',
+      name: 'weight',
       label: 'Weight',
-      type: 'select',
+      type: 'measurement',
       required: true,
-      options: Array.from({ length: 401 }, (_, i) => ({
-        value: String(i + 20),
-        label: String(i + 20)
-      }))
-    },
-    {
-      name: 'weightUnit',
-      label: 'Unit',
-      type: 'select',
-      required: true,
-      options: [
-        { value: 'kg', label: 'kg' },
-        { value: 'lbs', label: 'lbs' }
+      inputs: [
+        {
+          name: 'weightValue',
+          type: 'number',
+          placeholder: 'Enter weight'
+        },
+        {
+          name: 'weightUnit',
+          type: 'select',
+          options: [
+            { value: '', label: 'Unit' },
+            { value: 'kg', label: 'kg' },
+            { value: 'lbs', label: 'lbs' }
+          ]
+        }
       ]
     }
-  ],  medical: [
+  ],
+  medical: [
     {
       name: 'bloodType',
       label: 'Blood Type',

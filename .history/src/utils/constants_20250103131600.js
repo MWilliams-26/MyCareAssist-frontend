@@ -68,6 +68,8 @@ export const mockDoctors = [
   }
 ];
 
+import { US_STATES } from '../../utils/constants';
+
 export const formFields = {
   personal: [
     {
@@ -139,46 +141,51 @@ export const formFields = {
   ],
   measurements: [
     {
-      name: 'heightFeet',
-      label: 'Height (ft)',
-      type: 'select',
+      name: 'height',
+      label: 'Height',
+      type: 'measurement',
       required: true,
-      options: Array.from({ length: 8 }, (_, i) => ({
-        value: String(i + 1),
-        label: `${i + 1} ft`
-      }))
+      inputs: [
+        {
+          name: 'heightFeet',
+          type: 'number',
+          placeholder: 'Feet',
+          min: '0',
+          max: '8'
+        },
+        {
+          name: 'heightInches',
+          type: 'number',
+          placeholder: 'Inches',
+          min: '0',
+          max: '11'
+        }
+      ]
     },
     {
-      name: 'heightInches',
-      label: 'Height (in)',
-      type: 'select',
-      required: true,
-      options: Array.from({ length: 12 }, (_, i) => ({
-        value: String(i),
-        label: `${i} in`
-      }))
-    },
-    {
-      name: 'weightValue',
+      name: 'weight',
       label: 'Weight',
-      type: 'select',
+      type: 'measurement',
       required: true,
-      options: Array.from({ length: 401 }, (_, i) => ({
-        value: String(i + 20),
-        label: String(i + 20)
-      }))
-    },
-    {
-      name: 'weightUnit',
-      label: 'Unit',
-      type: 'select',
-      required: true,
-      options: [
-        { value: 'kg', label: 'kg' },
-        { value: 'lbs', label: 'lbs' }
+      inputs: [
+        {
+          name: 'weightValue',
+          type: 'number',
+          placeholder: 'Enter weight'
+        },
+        {
+          name: 'weightUnit',
+          type: 'select',
+          options: [
+            { value: '', label: 'Unit' },
+            { value: 'kg', label: 'kg' },
+            { value: 'lbs', label: 'lbs' }
+          ]
+        }
       ]
     }
-  ],  medical: [
+  ],
+  medical: [
     {
       name: 'bloodType',
       label: 'Blood Type',

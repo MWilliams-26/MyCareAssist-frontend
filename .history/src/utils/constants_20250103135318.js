@@ -159,10 +159,27 @@ export const formFields = {
       }))
     },
     {
+
       name: 'weightValue',
       label: 'Weight',
+
       type: 'select',
       required: true,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       options: Array.from({ length: 401 }, (_, i) => ({
         value: String(i + 20),
         label: String(i + 20)
@@ -178,6 +195,7 @@ export const formFields = {
         { value: 'lbs', label: 'lbs' }
       ]
     }
+
   ],  medical: [
     {
       name: 'bloodType',

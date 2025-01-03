@@ -1,3 +1,4 @@
+// Save user profile to localStorage
 export const createProfile = (profileData) => {
   return new Promise((resolve, reject) => {
     try {
@@ -9,6 +10,7 @@ export const createProfile = (profileData) => {
   });
 };
 
+// Get user profile from localStorage
 export const getProfile = () => {
   return new Promise((resolve, reject) => {
     try {
@@ -20,6 +22,7 @@ export const getProfile = () => {
   });
 };
 
+// Save doctors data in localStorage
 export const addDoctor = (data) => {
   return new Promise((resolve, reject) => {
     try {

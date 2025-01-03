@@ -74,17 +74,35 @@ export const formFields = {
       name: 'name',
       label: 'Name',
       type: 'text',
-      id: 'user-name',
       placeholder: 'Enter your full name',
-      required: true
+      required: true,
+      validation: {
+        minLength: 2,
+        pattern: '[A-Za-z\\s]+',
+        title: 'Please enter your legal full name using letters only'
+      }
     },
     {
       name: 'dob',
       label: 'Date of Birth',
       type: 'date',
-      id: 'dob',
-      placeholder: 'Enter your date of birth',
-      required: true
+      required: true,
+      validation: {
+        title: 'Please enter your date of birth'
+      }
+    },
+    {
+      name: 'gender',
+      label: 'Gender',
+      type: 'select',
+      required: true,
+      options: [
+        { value: '', label: 'Select your gender' },
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+        { value: 'non-binary', label: 'Non-Binary' },
+        { value: 'prefer-not-to-say', label: 'Prefer Not to Say' }
+      ]
     }
   ],
   address: [
@@ -107,83 +125,81 @@ export const formFields = {
       name: 'state',
       label: 'State',
       type: 'select',
-      options: US_STATES,
-      defaultOption: 'Select state',
-      required: true
+      required: true,
+      options: 'US_STATES'
     },
     {
       name: 'zipcode',
       label: 'Zip code',
       type: 'text',
       placeholder: 'Enter zipcode',
-      pattern: '[0-9]{5}',
-      maxLength: '5',
-      required: true
-    }
-  ],
-  demographics: [
-    {
-      name: 'gender',
-      label: 'Gender',
-      type: 'select',
-      id: 'gender',
       required: true,
-      options: [
-        { value: '', label: 'Select your gender' },
-        { value: 'male', label: 'Male' },
-        { value: 'female', label: 'Female' },
-        { value: 'non-binary', label: 'Non-Binary' },
-        { value: 'prefer-not-to-say', label: 'Prefer Not to Say' }
-      ]
+      validation: {
+        pattern: '^\\d{5}(-\\d{4})?$',
+        maxLength: 5,
+        title: 'Please enter a valid 5-digit ZIP code'
+      }
     }
   ],
   measurements: [
     {
-      name: 'heightFeet',
-      label: 'Height (ft)',
-      type: 'select',
+      name: 'height',
+      label: 'Height',
+      type: 'measurement',
       required: true,
-      options: Array.from({ length: 8 }, (_, i) => ({
-        value: String(i + 1),
-        label: `${i + 1} ft`
-      }))
+      fields: [
+        {
+          name: 'heightFeet',
+          type: 'number',
+          placeholder: 'Feet',
+          validation: {
+            min: 0,
+            max: 8
+          }
+        },
+        {
+          name: 'heightInches',
+          type: 'number',
+          placeholder: 'Inches',
+          validation: {
+            min: 0,
+            max: 11
+          }
+        }
+      ]
     },
     {
-      name: 'heightInches',
-      label: 'Height (in)',
-      type: 'select',
-      required: true,
-      options: Array.from({ length: 12 }, (_, i) => ({
-        value: String(i),
-        label: `${i} in`
-      }))
-    },
-    {
-      name: 'weightValue',
+      name: 'weight',
       label: 'Weight',
-      type: 'select',
+      type: 'measurement',
       required: true,
-      options: Array.from({ length: 401 }, (_, i) => ({
-        value: String(i + 20),
-        label: String(i + 20)
-      }))
-    },
-    {
-      name: 'weightUnit',
-      label: 'Unit',
-      type: 'select',
-      required: true,
-      options: [
-        { value: 'kg', label: 'kg' },
-        { value: 'lbs', label: 'lbs' }
+      fields: [
+        {
+          name: 'weightValue',
+          type: 'number',
+          placeholder: 'Enter weight',
+          validation: {
+            min: 1,
+            max: 999
+          }
+        },
+        {
+          name: 'weightUnit',
+          type: 'select',
+          options: [
+            { value: '', label: 'Unit' },
+            { value: 'kg', label: 'kg' },
+            { value: 'lbs', label: 'lbs' }
+          ]
+        }
       ]
     }
-  ],  medical: [
+  ],
+  medical: [
     {
       name: 'bloodType',
       label: 'Blood Type',
       type: 'select',
-      id: 'bloodType',
       required: true,
       options: [
         { value: '', label: 'Select blood type' },
@@ -195,17 +211,16 @@ export const formFields = {
         { value: 'AB-', label: 'AB-' },
         { value: 'O+', label: 'O+' },
         { value: 'O-', label: 'O-' }
-      ]
+      ],
+      tooltip: 'Your blood type can be found on medical records or by requesting a blood type test'
     },
     {
       name: 'allergies',
       label: 'Allergies',
       type: 'text',
-      id: 'allergies',
-      placeholder: 'list any allergies',
-      required: true
+      placeholder: 'List any allergies',
+      required: true,
+      tooltip: 'Include any known food, medication, or environmental allergies'
     }
   ]
 };
-
-

@@ -137,6 +137,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     resetForm();
     onClose();
   };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -146,8 +147,44 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
       onSubmit={handleSubmit}
     >
       <div className="setup__profile-container">
+        <div className="profile-info-group">
+          <div className="full-width">
+            <label className="modal__label">
+              Name
+              <input type="text" className="modal__input" />
+            </label>
+          </div>
+          <div className="full-width">
+            <label className="modal__label">
+              Street Address
+              <input type="text" className="modal__input" />
+            </label>
+          </div>
+          <label className="modal__label">
+            Date of Birth
+            <input type="date" className="modal__input" />
+          </label>
+          <label className="modal__label">
+            City
+            <input type="text" className="modal__input" />
+          </label>
+          <div className="state-zip">
+            <label className="modal__label">
+              State
+              <select className="modal__input">
+                {US_STATES.map(state => (
+                  <option key={state.value} value={state.value}>{state.label}</option>
+                ))}
+              </select>
+            </label>
+            <label className="modal__label">
+              ZIP Code
+              <input type="text" className="modal__input" />
+            </label>
+          </div>
+        </div>
         {Object.entries(formFields).map(([section, fields]) => (
-          <div key={section} className="profile-info-group">
+          <div key={section}>
             {fields.map(renderField)}
           </div>
         ))}

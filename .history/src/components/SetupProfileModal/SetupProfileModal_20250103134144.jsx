@@ -21,66 +21,6 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     allergies: profile?.allergies || "",
   });
 
-  const selectFields = {
-    state: {
-      options: US_STATES.map(state => ({
-        value: state.value,
-        label: state.label
-      })),
-      placeholder: "Select State"
-    },
-    gender: {
-      options: [
-        { value: "male", label: "Male" },
-        { value: "female", label: "Female" },
-        { value: "other", label: "Other" },
-        { value: "prefer-not-to-say", label: "Prefer not to say" }
-      ],
-      placeholder: "Select Gender"
-    },
-    bloodType: {
-      options: [
-        { value: "A+", label: "A+" },
-        { value: "A-", label: "A-" },
-        { value: "B+", label: "B+" },
-        { value: "B-", label: "B-" },
-        { value: "O+", label: "O+" },
-        { value: "O-", label: "O-" },
-        { value: "AB+", label: "AB+" },
-        { value: "AB-", label: "AB-" }
-      ],
-      placeholder: "Select Blood Type"
-    },
-    weightUnit: {
-      options: [
-        { value: "lbs", label: "lbs" },
-        { value: "kg", label: "kg" }
-      ],
-      placeholder: "Select Unit"
-    },
-    heightFeet: {
-      options: Array.from({ length: 8 }, (_, i) => ({
-        value: String(i + 1),
-        label: `${i + 1} ft`
-      })),
-      placeholder: "Select Feet"
-    },
-    heightInches: {
-      options: Array.from({ length: 12 }, (_, i) => ({
-        value: String(i),
-        label: `${i} in`
-      })),
-      placeholder: "Select Inches"
-    },
-    weightValue: {
-      options: Array.from({ length: 401 }, (_, i) => ({
-        value: String(i + 20),
-        label: String(i + 20)
-      })),
-      placeholder: "Select Weight"
-    }
-  };
-
   const renderField = (field) => {
     const baseProps = {
       className: "modal__input",
@@ -88,6 +28,46 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
       value: values[field.name],
       onChange: handleChange,
       required: field.required
+    };
+
+    // Select fields with predefined options
+    const selectFields = {
+      state: {
+        options: US_STATES.map(state => ({
+          value: state.value,
+          label: state.label
+        })),
+        placeholder: "Select State"
+      },
+      gender: {
+        options: [
+          { value: "male", label: "Male" },
+          { value: "female", label: "Female" },
+          { value: "other", label: "Other" },
+          { value: "prefer-not-to-say", label: "Prefer not to say" }
+        ],
+        placeholder: "Select Gender"
+      },
+      bloodType: {
+        options: [
+          { value: "A+", label: "A+" },
+          { value: "A-", label: "A-" },
+          { value: "B+", label: "B+" },
+          { value: "B-", label: "B-" },
+          { value: "O+", label: "O+" },
+          { value: "O-", label: "O-" },
+          { value: "AB+", label: "AB+" },
+          { value: "AB-", label: "AB-" }
+        ],
+        placeholder: "Select Blood Type"
+      },
+      weightUnit: {
+        options: [
+          { value: "lbs", label: "lbs" },
+          { value: "kg", label: "kg" }
+        ],
+        placeholder: "Select Unit"
+      }
     };
 
     if (selectFields[field.name]) {
@@ -137,6 +117,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     resetForm();
     onClose();
   };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -147,7 +128,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     >
       <div className="setup__profile-container">
         {Object.entries(formFields).map(([section, fields]) => (
-          <div key={section} className="profile-info-group">
+          <div key={section}>
             {fields.map(renderField)}
           </div>
         ))}

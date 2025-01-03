@@ -1,3 +1,4 @@
+// Save user profile to localStorage
 export const createProfile = (profileData) => {
   return new Promise((resolve, reject) => {
     try {

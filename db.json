@@ -143,6 +143,12 @@
       "email": "avery@mail.com",
       "name": "Avery Mcalister",
       "password": "window"
+    },
+    {
+      "id": "3e1d",
+      "email": "jan@mail.com",
+      "name": "William Pennington",
+      "password": "firebird"
     }
   ]
 }

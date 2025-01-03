@@ -1,0 +1,77 @@
+.setup__profile-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #333;
+}
+
+.modal__input {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.modal__input:focus {
+  border-color: #2196f3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.measurement__group {
+  display: flex;
+  gap: 10px;
+}
+
+.measurement__inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.measurement__inputs .modal__input {
+  flex: 1;
+}
+
+/* Styling for select dropdowns */
+select.modal__input {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Hover states */
+.modal__input:hover {
+  border-color: #90caf9;
+}
+
+/* Error states */
+.modal__input:invalid {
+  border-color: #f44336;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .setup__profile-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .measurement__inputs {
+    flex-direction: column;
+  }
+}
