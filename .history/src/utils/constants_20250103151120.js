@@ -255,7 +255,7 @@ export const DOCTOR_FORM_FIELDS = [
     name: "state",
     placeholder: "State",
     label: "State",
-    options: US_STATES,
+    
     required: true
   },
   {

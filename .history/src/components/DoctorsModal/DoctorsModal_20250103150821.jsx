@@ -1,8 +1,10 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from '../../hooks/useForm';
+
 import { DOCTOR_FORM_FIELDS, US_STATES } from '../../utils/constants';
 
 const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
+
   const { values, handleChange, resetForm } = useForm({
     specialty: "",
     name: "",
@@ -29,8 +31,16 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
     });
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+
+
+
+
     addDoctor(values);
     resetActiveForm();
   };
@@ -95,6 +105,30 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
       {DOCTOR_FORM_FIELDS.map((field) => (
         <label key={field.id} className="modal__label">
           {field.label}{""}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           {renderFormField(field)}
         </label>
       ))}

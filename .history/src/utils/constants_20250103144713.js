@@ -229,41 +229,16 @@ export const DOCTOR_FORM_FIELDS = [
     type: "tel",
     id: "phone",
     name: "phone",
-    placeholder: "XXX-XXX-XXXX",
+    placeholder: "Enter phone number",
     label: "Phone",
     required: true
   },
   {
     type: "text",
-    id: "streetAddress",
-    name: "streetAddress",
-    placeholder: "Street address",
-    label: "Street Address",
-    required: true
-  },
-  {
-    type: "text",
-    id: "city",
-    name: "city",
-    placeholder: "City",
-    label: "City",
-    required: true
-  },
-  {
-    type: "select",
-    id: "state",
-    name: "state",
-    placeholder: "State",
-    label: "State",
-    options: US_STATES,
-    required: true
-  },
-  {
-    type: "text",
-    id: "zipCode",
-    name: "zipCode",
-    placeholder: "Zip code",
-    label: "Zip Code",
+    id: "address",
+    name: "address",
+    placeholder: "Enter address",
+    label: "Address",
     required: true
   },
   {
@@ -283,5 +258,6 @@ export const DOCTOR_FORM_FIELDS = [
     required: false
   }
 ];
+
 
 

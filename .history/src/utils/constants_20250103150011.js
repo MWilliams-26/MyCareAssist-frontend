@@ -250,12 +250,12 @@ export const DOCTOR_FORM_FIELDS = [
     required: true
   },
   {
-    type: "select",
+    type: "text",
     id: "state",
     name: "state",
     placeholder: "State",
     label: "State",
-    options: US_STATES,
+    maxLength: 2,
     required: true
   },
   {

@@ -229,12 +229,17 @@ export const DOCTOR_FORM_FIELDS = [
     type: "tel",
     id: "phone",
     name: "phone",
+
     placeholder: "XXX-XXX-XXXX",
     label: "Phone",
     required: true
   },
   {
     type: "text",
+
+
+
+
     id: "streetAddress",
     name: "streetAddress",
     placeholder: "Street address",
@@ -250,12 +255,12 @@ export const DOCTOR_FORM_FIELDS = [
     required: true
   },
   {
-    type: "select",
+    type: "text",
     id: "state",
     name: "state",
     placeholder: "State",
     label: "State",
-    options: US_STATES,
+    maxLength: 2,
     required: true
   },
   {
@@ -282,6 +287,7 @@ export const DOCTOR_FORM_FIELDS = [
     label: "Notes",
     required: false
   }
+
 ];
 
 
