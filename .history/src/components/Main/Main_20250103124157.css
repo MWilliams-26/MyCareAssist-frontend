@@ -1,0 +1,107 @@
+/* Section container */
+.welcome__section {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  /* background-color: #ffffff;  */
+  border-radius: 15px;
+  margin-top: 30px; 
+}
+
+/* Title container */
+.welcome__title-container {
+  margin-bottom: 20px; 
+}
+
+/* Title styling */
+.welcome__title {
+  font-family: "Goblin One", serif;
+  font-size: 48px; 
+  color: #013C38; 
+  margin-bottom: 15px; 
+  line-height: 1.2;
+}
+
+/* Subtitle text */
+.welcome__text {
+  font-size: 20px; 
+  color: #013C38; 
+  margin-bottom: 30px; 
+  line-height: 1.5;
+}
+
+/* Button container */
+.welcome__button-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Button styling */
+.welcome__button {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: 2px solid #013C38; 
+  border-radius: 25px;
+  background-color: #b4ddcf; 
+  color: #013C38; 
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.welcome__button:hover {
+  background-color: #5c8777; 
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Benefits list styles */
+.welcome__benefits {
+  display: flex;
+  flex-direction:  column;
+  align-items: center;
+  
+  list-style-type: none;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: #013C38;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.welcome__benefits li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.welcome__icon {
+  color: #5c8777;
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .welcome__title {
+    font-size: 36px;
+  }
+
+  .welcome__text {
+    font-size: 16px;
+  }
+
+  .welcome__button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
