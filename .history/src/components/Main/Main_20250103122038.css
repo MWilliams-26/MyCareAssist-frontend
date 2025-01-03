@@ -1,10 +1,29 @@
+General styling for the main container
+.main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  background-color: #f4f4f4; 
+  padding: 20px;
+  color: #013C38; 
+  font-family: "Be Vietnam Pro", sans-serif;
+  text-align: center;
+}
+
 /* Section container */
 .welcome__section {
-  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
+  max-width: 1200px;
   padding-bottom: 0;
   margin-bottom: 0;
-  /* background-color: #ffffff;  */
+  background-color: #ffffff; 
   border-radius: 15px;
   margin-top: 30px; 
 }
@@ -63,8 +82,7 @@
   list-style-type: none;
   margin-top: 20px;
   margin-bottom: 0;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding: 0;
   text-align: center;
   font-family: "Be Vietnam Pro", sans-serif;
   color: #013C38;
