@@ -3,6 +3,7 @@ import { useForm } from '../../hooks/useForm';
 import { EMERGENCY_CONTACT_FIELDS } from '../../utils/constants';
 
 const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
+
   const { values, handleChange, resetForm } = useForm({
     name: "",
     phone: "",
@@ -31,6 +32,45 @@ const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {EMERGENCY_CONTACT_FIELDS.map((field) => (
         <label key={field.id} className="modal__label">
           {field.label}
