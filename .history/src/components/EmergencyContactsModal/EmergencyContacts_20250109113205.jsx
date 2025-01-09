@@ -8,7 +8,7 @@ const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
     phone: "",
     relationship: "",
   });
-  
+npm 
   const resetActiveForm = () => {
     resetForm({
       name: "",
