@@ -3,6 +3,8 @@ import "./CreateEventFormModal.css";
 import close from "../../assets/close.svg";
 
 const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
+
+
   const defaultStart = new Date().toLocaleString('en-US', {
     year: 'numeric',
     month: '2-digit',
@@ -60,6 +62,7 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
       return;
     }
 
+
     onEventSubmit(formattedEvent);
     setFormValues({
       summary: "",
@@ -72,6 +75,7 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
+
         <div className="modal__header">
           <button className="modal__close" onClick={onClose}>
             <img src={close} alt="Close" className="modal__close-btn" />
@@ -94,6 +98,7 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
             placeholder="Event Description"
             required
           />
+
           <div className="datetime__field">
             <label htmlFor="startDateTime">Start Time:</label>
             <input

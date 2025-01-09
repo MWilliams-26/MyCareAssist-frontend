@@ -32,19 +32,13 @@
 }
 
 .calendar__loader-text {
-  color: #4A90E2;
-  font-size: 18px;
-  font-weight: 500;
+  color
 }
 
 .calendar__loader {
   color: #4A90E2;
   width: 60px;
   height: 60px;
-}
-
-.calendar__main {
-  height: calc(100% - 80px);
 }
 
 .calendar__link-button {

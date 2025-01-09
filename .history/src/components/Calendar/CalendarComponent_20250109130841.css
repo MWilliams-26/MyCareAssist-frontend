@@ -43,10 +43,6 @@
   height: 60px;
 }
 
-.calendar__main {
-  height: calc(100% - 80px);
-}
-
 .calendar__link-button {
   background-color: #013C38;
   color: #fff;

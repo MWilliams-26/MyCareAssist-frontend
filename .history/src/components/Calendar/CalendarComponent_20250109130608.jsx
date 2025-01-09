@@ -27,19 +27,14 @@ const loadGoogleScript = (setGoogleApiLoaded) => {
 };
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
-  const loadLocalEvents = () => {
-    const savedEvents = localStorage.getItem('localCalendarEvents');
-    return savedEvents ? JSON.parse(savedEvents) : [];
-  }
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState(null);
   const [events, setEvents] = useState({
     loading: false,
     data: loadLocalEvents(),
     googleEvents: [],
     error: null,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userName, setUserName] = useState(null);
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
@@ -73,6 +68,11 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const saveLocalEvents = (events) => {
     localStorage.setItem('localCalendarEvents', JSON.stringify(events));
+  }
+
+  const loadLocalEvents = () => {
+    const savedEvents = localStorage.getItem('localCalendarEvents');
+    return savedEvents ? JSON.parse(savedEvents) : [];
   }
 
   const handleAuthSuccess = (response) => {

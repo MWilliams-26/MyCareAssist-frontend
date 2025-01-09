@@ -27,19 +27,14 @@ const loadGoogleScript = (setGoogleApiLoaded) => {
 };
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
-  const loadLocalEvents = () => {
-    const savedEvents = localStorage.getItem('localCalendarEvents');
-    return savedEvents ? JSON.parse(savedEvents) : [];
-  }
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState(null);
   const [events, setEvents] = useState({
     loading: false,
     data: loadLocalEvents(),
     googleEvents: [],
     error: null,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userName, setUserName] = useState(null);
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
@@ -73,6 +68,11 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const saveLocalEvents = (events) => {
     localStorage.setItem('localCalendarEvents', JSON.stringify(events));
+  }
+
+  const loadLocalEvents = () => {
+    const savedEvents = localStorage.getItem('lcoalCalendarEvents');
+    return savedEvents ? JSON.parse(savedEvents) : [];
   }
 
   const handleAuthSuccess = (response) => {
@@ -135,24 +135,14 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     }
   };
 
-  const createLocalEvent = (newEvent) => {
-    const formattedEvent = {
+  const createLocalevent = (newEvent) => {
+    const formatedEvent = {
       title: newEvent.summary,
       description: newEvent.description,
-      start: new Date(newEvent.start.dateTime),
-      end: new Date(newEvent.end.dateTime),
-      isLocal: true,
-    };
-
-    setEvents(prevEvents => {
-      const updatedEvents = {
-        ...prevEvents,
-        data: [...prevEvents.data, formattedEvent]
-      };
-      saveLocalEvents(updatedEvents.data);
-      return updatedEvents;
-    });
-  };
+      start: 
+    }
+    }
+  }
 
   const handleSignOut = () => {
     window.google.accounts.id.disableAutoSelect();
@@ -191,35 +181,41 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           <strong>Error:</strong> {events.error}
         </div>
       )}
+
       {isModalOpen && (
-        <CreateEventFormModal
-          onEventSubmit={async (newEvent) => {
-            if (accessToken) {
-              await createEventOnGoogleCalendar(newEvent, accessToken);
-            } else {
-              createLocalEvent(newEvent);
-            }
-            setIsModalOpen(false);
-          }}
-          onClose={() => setIsModalOpen(false)}
-        />
+        <div className="modal-overlay" role="dialog" aria-labelledby="create-event-modal" aria-hidden={!isModalOpen}>
+          <div className="modal-content">
+            <button
+              className="close-modal"
+              onClick={() => setIsModalOpen(false)}
+              disabled={events.loading}
+              aria-label="Close modal"
+            >
+              <img src={close} alt="close" className="modal__close-btn" />
+            </button>
+            <CreateEventFormModal
+              onEventSubmit={async (newEvent) => {
+                await createEventOnGoogleCalendar(newEvent, accessToken);
+                setIsModalOpen(false);
+              }}
+              onClose={() => setIsModalOpen(false)}
+            />
+          </div>
+        </div>
       )}
+
       {events.loading ? (
-        <div className="calendar__loader-container">
-          <ClipLoader
-            className="calendar__loader"
-            loading={events.loading}
-            aria-label="Loading Calendar Events"
-          />
-          <h3 className="calendar__loader-text">Loading Calendar Events...</h3>
+        <div className="loading-message">
+          <ClipLoader color={"#123abc"} loading={events.loading} size={50} />
+          <p>Loading events...</p>
         </div>
       ) : (
         <Calendar
-          className="calendar__main"
           localizer={localizer}
           events={events.data}
           startAccessor="start"
           endAccessor="end"
+          style={{ height: "calc(100% - 80px)" }}
           popup
         />
       )}

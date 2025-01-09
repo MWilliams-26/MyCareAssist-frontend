@@ -3,23 +3,8 @@ import "./CreateEventFormModal.css";
 import close from "../../assets/close.svg";
 
 const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
-  const defaultStart = new Date().toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  });
-  
-  const defaultEnd = new Date(new Date().getTime() + 60 * 60 * 1000).toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  });
+  const defaultStart = new Date().toISOString().slice(0, 16);
+  const defaultEnd = new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 16);
 
   const [formValues, setFormValues] = useState({
     summary: "",
@@ -33,24 +18,8 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const formatDateTimeForSubmission = (dateTimeString) => {
-    const date = new Date(dateTimeString);
-    return date.toISOString();
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formattedEvent = {
-      summary: formValues.summary,
-      description: formValues.description,
-      start: {
-        dateTime: formatDateTimeForSubmission(formValues.startDateTime)
-      },
-      end: {
-        dateTime: formatDateTimeForSubmission(formValues.endDateTime)
-      }
-    };
-
     if (new Date(formValues.endDateTime) <= new Date(formValues.startDateTime)) {
       alert("End time must be after start time.");
       return;
@@ -59,8 +28,7 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
       alert("Start time cannot be in the past.");
       return;
     }
-
-    onEventSubmit(formattedEvent);
+    onEventSubmit(formValues);
     setFormValues({
       summary: "",
       description: "",
@@ -70,9 +38,31 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
   };
 
   return (
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div className="modal-overlay">
       <div className="modal-content">
-        <div className="modal__header">
+        <div>
           <button className="modal__close" onClick={onClose}>
             <img src={close} alt="Close" className="modal__close-btn" />
           </button>
@@ -94,6 +84,17 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
             placeholder="Event Description"
             required
           />
+
+
+
+
+
+
+
+
+
+
+
           <div className="datetime__field">
             <label htmlFor="startDateTime">Start Time:</label>
             <input
@@ -121,8 +122,24 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
           </div>
         </form>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 };
+
 
 export default CreateEventFormModal;

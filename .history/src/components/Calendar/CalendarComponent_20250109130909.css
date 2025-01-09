@@ -44,7 +44,7 @@
 }
 
 .calendar__main {
-  height: calc(100% - 80px);
+  height: calc(100)
 }
 
 .calendar__link-button {

@@ -22,29 +22,8 @@
   color: #013C38;
 }
 
-.calendar__loader-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-  gap: 24px;
-}
-
-.calendar__loader-text {
-  color: #4A90E2;
-  font-size: 18px;
-  font-weight: 500;
-}
-
 .calendar__loader {
-  color: #4A90E2;
-  width: 60px;
-  height: 60px;
-}
-
-.calendar__main {
-  height: calc(100% - 80px);
+  color: #4A90E
 }
 
 .calendar__link-button {

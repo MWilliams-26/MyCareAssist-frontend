@@ -27,19 +27,14 @@ const loadGoogleScript = (setGoogleApiLoaded) => {
 };
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
-  const loadLocalEvents = () => {
-    const savedEvents = localStorage.getItem('localCalendarEvents');
-    return savedEvents ? JSON.parse(savedEvents) : [];
-  }
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState(null);
   const [events, setEvents] = useState({
     loading: false,
     data: loadLocalEvents(),
     googleEvents: [],
     error: null,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userName, setUserName] = useState(null);
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
@@ -73,6 +68,11 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const saveLocalEvents = (events) => {
     localStorage.setItem('localCalendarEvents', JSON.stringify(events));
+  }
+
+  const loadLocalEvents = () => {
+    const savedEvents = localStorage.getItem('localCalendarEvents');
+    return savedEvents ? JSON.parse(savedEvents) : [];
   }
 
   const handleAuthSuccess = (response) => {
@@ -205,21 +205,20 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         />
       )}
       {events.loading ? (
-        <div className="calendar__loader-container">
+        <div className="loading-message">
           <ClipLoader
-            className="calendar__loader"
-            loading={events.loading}
-            aria-label="Loading Calendar Events"
-          />
-          <h3 className="calendar__loader-text">Loading Calendar Events...</h3>
+             
+
+            />
+          <p>Loading events...</p>
         </div>
       ) : (
         <Calendar
-          className="calendar__main"
           localizer={localizer}
           events={events.data}
           startAccessor="start"
           endAccessor="end"
+          style={{ height: "calc(100% - 80px)" }}
           popup
         />
       )}
