@@ -69,14 +69,10 @@ const CreateEventFormModal = ({ onEventSubmit, onClose }) => {
     });
   };
 
-  const handleOverlayClick = (e) => {
-    if (e.target.className === "modal-overlay") {
-      onClose();
-    }
-  }
+  const handleOverlayClick = (e)
 
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick}>
+    <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal__header">
           <button className="modal__close" onClick={onClose}>
