@@ -9,17 +9,20 @@
   background-color: white;
   border-radius: 8px;
   position: relative; /* Ensure relative positioning for the close button */
-}
-.modal__content {
+.modal-content {
   position: relative;
-  z-index: 1;
+  padding-top: 40px;
 }
 
 .modal__header {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
   z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
 }
 
 .modal__close {
@@ -27,15 +30,17 @@
   border: none;
   cursor: pointer;
   padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .modal__close-btn {
   width: 24px;
   height: 24px;
 }
+
+.event__form {
+  width: 100%;
+}
+
 .event__form input,
 .event__form textarea {
   padding: 12px;
@@ -48,7 +53,6 @@
   box-sizing: border-box;
   text-align: center;
 }
-
 
 .event__form button {
   padding: 8px;

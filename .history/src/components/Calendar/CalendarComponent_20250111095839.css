@@ -108,7 +108,8 @@
 }
 
 .rbc-today {
-  background-color: #B4DDCF;
+  background-color: #e8f4ff;
+  border: 2px solid #007bff;
 }
 
 .rbc-today:hover {

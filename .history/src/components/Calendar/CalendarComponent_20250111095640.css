@@ -107,13 +107,7 @@
   cursor: pointer;
 }
 
-.rbc-today {
-  background-color: #B4DDCF;
-}
 
-.rbc-today:hover {
-  background-color: #d1e9ff;
-}
 
 @media (max-width: 768px) {
   .calendar__container {
