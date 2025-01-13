@@ -233,7 +233,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           onSelectEvent={handleEventSelect}
           selectable
         />
-        )}
+        
         {selectedEvent && (
         <div className="calendar__event-modal">
           <div className="calendar__event-content">

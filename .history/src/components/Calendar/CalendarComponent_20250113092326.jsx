@@ -233,7 +233,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           onSelectEvent={handleEventSelect}
           selectable
         />
-        )}
         {selectedEvent && (
         <div className="calendar__event-modal">
           <div className="calendar__event-content">
@@ -242,7 +241,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
               <img
                 src={close}
                 alt="Close"
-                onclick={handleCloseEventDetails}
+                onClick={handleCloseEventDetails}
                 className="calendar__close-icon"
               />
             </div>

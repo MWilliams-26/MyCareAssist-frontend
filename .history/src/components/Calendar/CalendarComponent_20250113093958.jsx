@@ -142,6 +142,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       description: newEvent.description,
       start: new Date(newEvent.start.dateTime),
       end: new Date(newEvent.end.dateTime),
+      a
       isLocal: true,
     };
 

@@ -42,7 +42,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const [userName, setUserName] = useState(null);
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEv]
 
   const localizer = momentLocalizer(moment);
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
@@ -163,14 +163,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     onGoogleSignOut && onGoogleSignOut();
   };
 
-  const handleEventSelect = (event) => {
-    setSelectedEvent(event);
-  }
-
-  const handleCloseEventDetails = () => {
-    setSelectedEvent(null);
-  }
-
 
   return (
     <div className="calendar__container">
@@ -230,27 +222,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
           startAccessor="start"
           endAccessor="end"
           popup
-          onSelectEvent={handleEventSelect}
-          selectable
         />
-        )}
-        {selectedEvent && (
-        <div className="calendar__event-modal">
-          <div className="calendar__event-content">
-            <div className="calendar__event-header">
-              <h3 className="calendar__event-title">{selectedEvent.title}</h3>
-              <img
-                src={close}
-                alt="Close"
-                onclick={handleCloseEventDetails}
-                className="calendar__close-icon"
-              />
-            </div>
-            <p className="calendar__event-description">{selectedEvent.description}</p>
-            <p className="calendar__event-time">Start: {moment(selectedEvent.start).format('MMMM Do YYYY, h:mm a')}</p>
-            <p className="calendar__event-time">End: {moment(selectedEvent.end).format('MMMM Do YYYY, h:mm a')}</p>
-          </div>
-        </div>
       )}
     </div>
   );
