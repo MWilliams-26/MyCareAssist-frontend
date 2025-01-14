@@ -149,6 +149,12 @@
       "email": "jan@mail.com",
       "name": "William Pennington",
       "password": "firebird"
+    },
+    {
+      "id": "ee32",
+      "email": "mama@mail.com",
+      "name": "Vivian Phoenx",
+      "password": "firebird"
     }
   ]
 }

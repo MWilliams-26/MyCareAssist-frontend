@@ -7,10 +7,7 @@
   margin: 0;
 }
 
-.modal__form .modal__submit {
-  min-width: 200px;
-  padding: 12px 24px;
-}
+.setup__profile-container .modal__submit 
 
 .modal__label {
   display: flex;

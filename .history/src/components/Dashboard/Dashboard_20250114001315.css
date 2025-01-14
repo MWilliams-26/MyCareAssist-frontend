@@ -286,14 +286,3 @@
     display: none;
   }
 }
-
-.dashboard__hub-calendar h2 {
-  display: none;
-}
-
-.dashboard__hub-calendar .calendar-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}

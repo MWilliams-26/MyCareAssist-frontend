@@ -293,7 +293,9 @@
 
 .dashboard__hub-calendar .calendar-controls {
   display: flex;
-  justify-content: space-between;
+
+  justify-content: flex-end;
   align-items: center;
+  gap: 15px;
   padding: 10px 20px;
 }

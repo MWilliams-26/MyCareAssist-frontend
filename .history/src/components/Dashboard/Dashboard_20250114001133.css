@@ -180,12 +180,6 @@
     box-sizing: border-box;
   }
 
-  @media (max-width: 768px) {
-    .dashboard__hub-calendar {
-      padding: 10px 5px;
-    }
-  }
-
   .dashboard__header {
     padding: 10px 0;
   }
@@ -279,21 +273,4 @@
   .dashboard__hub-medication-title {
     font-size: 20px;
   }
-}
-
-@media (max-width: 768px) {
-  .dashboard__hub-calendar h2 {
-    display: none;
-  }
-}
-
-.dashboard__hub-calendar h2 {
-  display: none;
-}
-
-.dashboard__hub-calendar .calendar-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
 }

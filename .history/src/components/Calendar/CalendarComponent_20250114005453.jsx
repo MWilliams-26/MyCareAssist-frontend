@@ -150,15 +150,19 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
-      const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
       setEvents((prevEvents) => ({
-        ...prevEvents,
-        data: [...prevEvents.data, {
-          title: createdEvent.summary,
-          description: createdEvent.description,
-          start: new Date(createdEvent.start.dateTime),
-          end: new Date(createdEvent.end.dateTime),
-        }],
+        data: [
+          ...prevEvents.data,
+          {
+            title: newEvent.title,
+            description: newEvent.description,
+            start: newEvent.start,
+            end: newEvent.end,
+          },
+        ],
+        loading: false,
+        error: null,
       }));
     } catch (err) {
       handleError(err, setEvents);
@@ -206,20 +210,19 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
             Create Event
           </button>
           {userName ? (
-            <button className="calendar__link-button" onClick={handleSignOut}>
+            <button className="calendar__link-btn" onClick={handleSignOut}>
               Sign Out
             </button>
           ) : (
-            <button className="calendar__link-button" id="google-signin-button">
-              Sign in with Google
-            </button>
+            <div id="google-signin-button"></div>
           )}
         </div>
       </div>
 
-      {events.error && (<div className="error-message">
-        <strong>Error:</strong> {events.error}
-      </div>
+      {events.error && (
+        <div className="error-message">
+          <strong>Error:</strong> {events.error}
+        </div>
       )}
       {isModalOpen && (
         <CreateEventFormModal
@@ -256,7 +259,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         />
       )}
       {selectedEvent && (
-        <EventDetailsModal
+        <EventDetailsModal 
           event={selectedEvent}
           onClose={handleCloseEventDetails}
         />

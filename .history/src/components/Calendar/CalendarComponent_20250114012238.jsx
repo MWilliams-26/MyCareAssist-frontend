@@ -147,122 +147,115 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       handleError(err, setEvents);
     }
   };
-
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
-      const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
-      setEvents((prevEvents) => ({
-        ...prevEvents,
-        data: [...prevEvents.data, {
-          title: createdEvent.summary,
-          description: createdEvent.description,
-          start: new Date(createdEvent.start.dateTime),
-          end: new Date(createdEvent.end.dateTime),
-        }],
-      }));
+      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      // Immediately reload calendar events after creation
+      loadCalendarEvents(token);
     } catch (err) {
       handleError(err, setEvents);
     }
   };
+};
 
-  const createLocalEvent = (newEvent) => {
-    const formattedEvent = {
-      title: newEvent.summary,
-      description: newEvent.description,
-      start: new Date(newEvent.start.dateTime),
-      end: new Date(newEvent.end.dateTime),
-      isLocal: true,
-    };
-
-    setEvents(prevEvents => {
-      const updatedEvents = {
-        ...prevEvents,
-        data: [...prevEvents.data, formattedEvent]
-      };
-      saveLocalEvents(updatedEvents.data);
-      return updatedEvents;
-    });
+const createLocalEvent = (newEvent) => {
+  const formattedEvent = {
+    title: newEvent.summary,
+    description: newEvent.description,
+    start: new Date(newEvent.start.dateTime),
+    end: new Date(newEvent.end.dateTime),
+    isLocal: true,
   };
 
-  const handleEventSelect = (event) => {
-    setSelectedEvent(event);
-  }
+  setEvents(prevEvents => {
+    const updatedEvents = {
+      ...prevEvents,
+      data: [...prevEvents.data, formattedEvent]
+    };
+    saveLocalEvents(updatedEvents.data);
+    return updatedEvents;
+  });
+};
 
-  const handleCloseEventDetails = () => {
-    setSelectedEvent(null);
-  }
+const handleEventSelect = (event) => {
+  setSelectedEvent(event);
+}
 
-  return (
-    <div className="calendar__container">
-      <div className="calendar__header">
-        <h2 className="calendar__title">My Calendar</h2>
-        {userName && <div className="calendar__username">Welcome, {userName}!</div>}
-        <div className="calendar__buttons">
-          <button
-            className="calendar__btn"
-            onClick={() => setIsModalOpen(true)}
-            disabled={isModalOpen || events.loading}
-          >
-            Create Event
+const handleCloseEventDetails = () => {
+  setSelectedEvent(null);
+}
+
+return (
+  <div className="calendar__container">
+    <div className="calendar__header">
+      <h2 className="calendar__title">My Calendar</h2>
+      {userName && <div className="calendar__username">Welcome, {userName}!</div>}
+      <div className="calendar__buttons">
+        <button
+          className="calendar__btn"
+          onClick={() => setIsModalOpen(true)}
+          disabled={isModalOpen || events.loading}
+        >
+          Create Event
+        </button>
+        {userName ? (
+          <button className="calendar__link-button" onClick={handleSignOut}>
+            Sign Out
           </button>
-          {userName ? (
-            <button className="calendar__link-button" onClick={handleSignOut}>
-              Sign Out
-            </button>
-          ) : (
-            <button className="calendar__link-button" id="google-signin-button">
-              Sign in with Google
-            </button>
-          )}
-        </div>
+        ) : (
+          <button className="calendar__link-button" id="google-signin-button">
+            Sign in with Google
+          </button>
+        )}
       </div>
-
-      {events.error && (<div className="error-message">
-        <strong>Error:</strong> {events.error}
-      </div>
-      )}
-      {isModalOpen && (
-        <CreateEventFormModal
-          onEventSubmit={async (newEvent) => {
-            if (accessToken) {
-              await createEventOnGoogleCalendar(newEvent, accessToken);
-            } else {
-              createLocalEvent(newEvent);
-            }
-            setIsModalOpen(false);
-          }}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
-      {events.loading ? (
-        <div className="calendar__loader-container">
-          <ClipLoader
-            className="calendar__loader"
-            loading={events.loading}
-            aria-label="Loading Calendar Events"
-          />
-          <h3 className="calendar__loader-text">Loading Calendar Events...</h3>
-        </div>
-      ) : (
-        <Calendar
-          className="calendar__main"
-          localizer={localizer}
-          events={events.data}
-          startAccessor="start"
-          endAccessor="end"
-          popup
-          onSelectEvent={handleEventSelect}
-          selectable
-        />
-      )}
-      {selectedEvent && (
-        <EventDetailsModal
-          event={selectedEvent}
-          onClose={handleCloseEventDetails}
-        />
-      )}
     </div>
-  );
+
+    {events.error && (<div className="error-message">
+      <strong>Error:</strong> {events.error}
+    </div>
+    )}
+    {isModalOpen && (
+      <CreateEventFormModal
+        onEventSubmit={async (newEvent) => {
+          if (accessToken) {
+            await createEventOnGoogleCalendar(newEvent, accessToken);
+          } else {
+            createLocalEvent(newEvent);
+          }
+          setIsModalOpen(false);
+        }}
+        onClose={() => setIsModalOpen(false)}
+      />
+    )}
+    {events.loading ? (
+      <div className="calendar__loader-container">
+        <ClipLoader
+          className="calendar__loader"
+          loading={events.loading}
+          aria-label="Loading Calendar Events"
+        />
+        <h3 className="calendar__loader-text">Loading Calendar Events...</h3>
+      </div>
+    ) : (
+      <Calendar
+        className="calendar__main"
+        localizer={localizer}
+        events={events.data}
+        startAccessor="start"
+        endAccessor="end"
+        popup
+        onSelectEvent={handleEventSelect}
+        selectable
+      />
+    )}
+    {selectedEvent && (
+      <EventDetailsModal
+        event={selectedEvent}
+        onClose={handleCloseEventDetails}
+      />
+    )}
+  </div>
+);
 };
 
 export default CalendarComponent;

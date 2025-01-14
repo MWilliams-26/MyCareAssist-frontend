@@ -295,5 +295,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+
+  padding: 10px 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dashboard__hub-calendar .calendar-controls .create-event {
+  margin-right: auto;
+}
+
+.dashboard__hub-calendar .calendar-controls .google-btn {
+  margin-left: auto;
 }

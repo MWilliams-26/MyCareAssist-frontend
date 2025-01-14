@@ -25,7 +25,7 @@ export const addDoctor = (data) => {
     try {
       const existingDoctors = localStorage.getItem('doctors');
       const doctorsList = existingDoctors ? JSON.parse(existingDoctors) : [];
-
+      
       const newDoctor = {
         _id: Date.now().toString(),
         ...data,
@@ -84,17 +84,31 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
 
 export const addEventToGoogleCalendar = async (newEvent, token, calendarId) => {
   const event = {
+
     summary: newEvent.summary,
     description: newEvent.description,
     start: {
+
+
       dateTime: newEvent.start.dateTime,
       timeZone: "UTC",
     },
     end: {
+
+
       dateTime: newEvent.end.dateTime,
       timeZone: "UTC",
     },
   };
+
+
+
+
+
+
+
+
+
 
   try {
     const response = await fetch(
@@ -113,9 +127,15 @@ export const addEventToGoogleCalendar = async (newEvent, token, calendarId) => {
       throw new Error("Failed to create event in Google Calendar.");
     }
 
+
+
+
     const data = await response.json();
     return data;
   } catch (error) {
     throw new Error(`Error creating event: ${error.message}`);
   }
-};
+
+
+
+};};

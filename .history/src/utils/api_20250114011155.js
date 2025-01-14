@@ -25,7 +25,7 @@ export const addDoctor = (data) => {
     try {
       const existingDoctors = localStorage.getItem('doctors');
       const doctorsList = existingDoctors ? JSON.parse(existingDoctors) : [];
-
+      
       const newDoctor = {
         _id: Date.now().toString(),
         ...data,
@@ -84,38 +84,58 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
 
 export const addEventToGoogleCalendar = async (newEvent, token, calendarId) => {
   const event = {
-    summary: newEvent.summary,
+    summary: newEvent.title,
     description: newEvent.description,
     start: {
-      dateTime: newEvent.start.dateTime,
-      timeZone: "UTC",
+
+
+      dateTime: new Date(newEvent.start).toISOString(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
     end: {
-      dateTime: newEvent.end.dateTime,
-      timeZone: "UTC",
+
+
+      dateTime: new Date(newEvent.end).toISOString(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   };
 
-  try {
-    const response = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(event),
-      }
-    );
 
-    if (!response.ok) {
-      throw new Error("Failed to create event in Google Calendar.");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const response = await fetch(
+    `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(event),
     }
+  );
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(`Error creating event: ${error.message}`);
+
+
+
+
+  if (!response.ok) {
+    throw new Error("Failed to create event in Google Calendar.");
   }
+
+
+  const data = await response.json();
+  return data;
 };

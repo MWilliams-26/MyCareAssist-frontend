@@ -150,15 +150,19 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
-      const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
       setEvents((prevEvents) => ({
-        ...prevEvents,
-        data: [...prevEvents.data, {
-          title: createdEvent.summary,
-          description: createdEvent.description,
-          start: new Date(createdEvent.start.dateTime),
-          end: new Date(createdEvent.end.dateTime),
-        }],
+        data: [
+          ...prevEvents.data,
+          {
+            title: newEvent.title,
+            description: newEvent.description,
+            start: newEvent.start,
+            end: newEvent.end,
+          },
+        ],
+        loading: false,
+        error: null,
       }));
     } catch (err) {
       handleError(err, setEvents);

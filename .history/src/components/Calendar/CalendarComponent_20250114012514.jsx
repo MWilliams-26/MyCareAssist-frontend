@@ -150,8 +150,20 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
+
       const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
       setEvents((prevEvents) => ({
+
+
+
+
+
+
+
+
+
+
+
         ...prevEvents,
         data: [...prevEvents.data, {
           title: createdEvent.summary,

@@ -7,9 +7,9 @@
   margin: 0;
 }
 
-.modal__form .modal__submit {
+.setup__profile-container .modal__submit {
   min-width: 200px;
-  padding: 12px 24px;
+  padding: 12px 24px
 }
 
 .modal__label {

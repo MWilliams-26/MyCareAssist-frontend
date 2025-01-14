@@ -165,11 +165,14 @@
       "bottomRight";
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+
     gap: 15px;
     padding: 10px;
     height: auto;
     min-height: unset;
   }
+
+
 
   .dashboard__hub-calendar {
     width: 100%;
@@ -180,25 +183,33 @@
     box-sizing: border-box;
   }
 
-  @media (max-width: 768px) {
-    .dashboard__hub-calendar {
-      padding: 10px 5px;
-    }
-  }
+
 
   .dashboard__header {
     padding: 10px 0;
   }
+
+
 
   .dashboard__header-title {
     font-size: 36px;
     padding-top: 5px;
   }
 
+
+
+
+
+
+
+
+
+
   .dashboard__header-greeting {
     font-size: 18px;
     padding: 5px 0;
   }
+
 
   .dashboard__hub-profile,
   .dashboard__hub-doctor,
@@ -251,16 +262,14 @@
     font-size: 1rem;
   }
 
-  /* Add these new styles */
-  .dashboard__hub-calendar button {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
 
-  .dashboard__hub-calendar .google-btn {
-    transform: scale(0.8);
-    transform-origin: center;
-  }
+
+
+
+
+
+
+
 }
 
 /* Add styles for even smaller screens */
@@ -279,21 +288,4 @@
   .dashboard__hub-medication-title {
     font-size: 20px;
   }
-}
-
-@media (max-width: 768px) {
-  .dashboard__hub-calendar h2 {
-    display: none;
-  }
-}
-
-.dashboard__hub-calendar h2 {
-  display: none;
-}
-
-.dashboard__hub-calendar .calendar-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
 }

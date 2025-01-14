@@ -147,22 +147,38 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
       handleError(err, setEvents);
     }
   };
-
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
-      const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      const formattedEvent = {
+        ...newEvent,
+        start: {
+          dateTime: new Date(newEvent.start.dateTime).toISOString(),
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        end: {
+          dateTime: new Date(newEvent.end.dateTime).toISOString(),
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        }
+      };
+
+      await addEventToGoogleCalendar(formattedEvent, token, CALENDAR_ID);
       setEvents((prevEvents) => ({
-        ...prevEvents,
-        data: [...prevEvents.data, {
-          title: createdEvent.summary,
-          description: createdEvent.description,
-          start: new Date(createdEvent.start.dateTime),
-          end: new Date(createdEvent.end.dateTime),
-        }],
+        data: [
+          ...prevEvents.data,
+          {
+            title: newEvent.title,
+            description: newEvent.description,
+            start: new Date(newEvent.start.dateTime),
+            end: new Date(newEvent.end.dateTime),
+          },
+        ],
+        loading: false,
+        error: null,
       }));
     } catch (err) {
       handleError(err, setEvents);
     }
+  };
   };
 
   const createLocalEvent = (newEvent) => {
@@ -217,9 +233,9 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         </div>
       </div>
 
-      {events.error && (<div className="error-message">
-        <strong>Error:</strong> {events.error}
-      </div>
+      {events.error && (        <div className="error-message">
+          <strong>Error:</strong> {events.error}
+        </div>
       )}
       {isModalOpen && (
         <CreateEventFormModal
@@ -256,7 +272,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         />
       )}
       {selectedEvent && (
-        <EventDetailsModal
+        <EventDetailsModal 
           event={selectedEvent}
           onClose={handleCloseEventDetails}
         />

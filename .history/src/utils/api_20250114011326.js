@@ -25,7 +25,7 @@ export const addDoctor = (data) => {
     try {
       const existingDoctors = localStorage.getItem('doctors');
       const doctorsList = existingDoctors ? JSON.parse(existingDoctors) : [];
-
+      
       const newDoctor = {
         _id: Date.now().toString(),
         ...data,

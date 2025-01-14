@@ -44,20 +44,9 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const [googleApiLoaded, setGoogleApiLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const localizer = momentLocalizer(moment);
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
-
-  const checkTokenValidity = () => {
-    const savedToken = localStorage.getItem('googleToken');
-    if (savedToken) {
-      setAccessToken(savedToken);
-      setIsAuthenticated(true);
-      fetchUserInfo(savedToken);
-      loadCalendarEvents(savedToken);
-    }
-  };
 
   useEffect(() => {
     if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
@@ -70,50 +59,31 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   useEffect(() => {
     if (googleApiLoaded) {
-      const client = google.accounts.oauth2.initTokenClient({
+      window.google.accounts.id.initialize({
         client_id: CLIENT_ID,
+        callback: handleAuthSuccess,
         scope: SCOPES,
-        callback: (tokenResponse) => {
-          const token = tokenResponse.access_token;
-          setAccessToken(token);
-          fetchUserInfo(token);
-          loadCalendarEvents(token);
-        },
       });
 
-      const handleGoogleSignIn = () => {
-        client.requestAccessToken();
-      };
-
-      const button = document.getElementById("google-signin-button");
-      if (button) {
-        button.onclick = handleGoogleSignIn;
-      }
+      window.google.accounts.id.renderButton(document.getElementById("google-signin-button"), {
+        theme: "outline",
+        size: "large",
+        text: "sign_in_with",
+      });
     }
   }, [googleApiLoaded]);
-
-  const handleAuthSuccess = (response) => {
-    const token = response.credential;
-    localStorage.setItem('googleToken', token);
-    setAccessToken(token);
-    setIsAuthenticated(true);
-    fetchUserInfo(token);
-    loadCalendarEvents(token);
-  };
-
-  const handleSignOut = () => {
-    window.google.accounts.id.disableAutoSelect();
-    localStorage.removeItem('googleToken');
-    setUserName(null);
-    setEvents({ loading: false, data: [], error: null });
-    setAccessToken(null);
-    setIsAuthenticated(false);
-    onGoogleSignOut && onGoogleSignOut();
-  };
 
   const saveLocalEvents = (events) => {
     localStorage.setItem('localCalendarEvents', JSON.stringify(events));
   }
+
+  const handleAuthSuccess = (response) => {
+    console.log()
+    const token = response.credential;
+    setAccessToken(token);
+    fetchUserInfo(token);
+    loadCalendarEvents(token);
+  };
 
   const fetchUserInfo = async (token) => {
     try {
@@ -130,13 +100,13 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   };
 
   const loadCalendarEvents = async (token) => {
+    console.log('Loading events with token:', token);
     setEvents((prevEvents) => ({
       ...prevEvents,
       loading: true,
     }));
 
     try {
-      // Add proper authorization header
       const calendarEvents = await fetchGoogleCalendarEvents(token, CALENDAR_ID);
       setEvents({
         data: calendarEvents,
@@ -150,15 +120,19 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
   const createEventOnGoogleCalendar = async (newEvent, token) => {
     try {
-      const createdEvent = await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
+      await addEventToGoogleCalendar(newEvent, token, CALENDAR_ID);
       setEvents((prevEvents) => ({
-        ...prevEvents,
-        data: [...prevEvents.data, {
-          title: createdEvent.summary,
-          description: createdEvent.description,
-          start: new Date(createdEvent.start.dateTime),
-          end: new Date(createdEvent.end.dateTime),
-        }],
+        data: [
+          ...prevEvents.data,
+          {
+            title: newEvent.title,
+            description: newEvent.description,
+            start: newEvent.start,
+            end: newEvent.end,
+          },
+        ],
+        loading: false,
+        error: null,
       }));
     } catch (err) {
       handleError(err, setEvents);
@@ -184,6 +158,14 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
     });
   };
 
+  const handleSignOut = () => {
+    window.google.accounts.id.disableAutoSelect();
+    setUserName(null);
+    setEvents({ loading: false, data: [], error: null });
+    setAccessToken(null);
+    onGoogleSignOut && onGoogleSignOut();
+  };
+
   const handleEventSelect = (event) => {
     setSelectedEvent(event);
   }
@@ -206,20 +188,19 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
             Create Event
           </button>
           {userName ? (
-            <button className="calendar__link-button" onClick={handleSignOut}>
+            <button className="calendar__link-btn" onClick={handleSignOut}>
               Sign Out
             </button>
           ) : (
-            <button className="calendar__link-button" id="google-signin-button">
-              Sign in with Google
-            </button>
+            <div id="google-signin-button"></div>
           )}
         </div>
       </div>
 
-      {events.error && (<div className="error-message">
-        <strong>Error:</strong> {events.error}
-      </div>
+      {events.error && (
+        <div className="error-message">
+          <strong>Error:</strong> {events.error}
+        </div>
       )}
       {isModalOpen && (
         <CreateEventFormModal
@@ -256,7 +237,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         />
       )}
       {selectedEvent && (
-        <EventDetailsModal
+        <EventDetailsModal 
           event={selectedEvent}
           onClose={handleCloseEventDetails}
         />

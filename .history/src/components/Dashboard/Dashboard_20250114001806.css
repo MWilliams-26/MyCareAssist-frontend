@@ -296,4 +296,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  width: 100%;
+}
+
+.dashboard__hub-calendar .calendar-controls .create-event {
+  margin-right: auto;
+}
+
+.dashboard__hub-calendar .calendar-controls .google-btn {
+  margin-left: auto;
 }
