@@ -1,4 +1,4 @@
-import '../Cards/Cards.css';
+
 
 function DoctorCard({ doctor }) {
   return (

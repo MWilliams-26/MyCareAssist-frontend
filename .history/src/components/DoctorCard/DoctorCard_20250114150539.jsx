@@ -1,5 +1,3 @@
-import '../Cards/Cards.css';
-
 function DoctorCard({ doctor }) {
   return (
     <div className="doctor__card">

@@ -1,5 +1,3 @@
-import '../Cards/Cards.css';
-
 function DoctorCard({ doctor }) {
   return (
     <div className="doctor__card">
@@ -29,6 +27,6 @@ function DoctorCard({ doctor }) {
 
 export default DoctorCard;
 
-
+import '../Cards/Cards.css';
 
 
