@@ -1,0 +1,57 @@
+.doctor__card,
+.emergency__card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+
+  margin: 16px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.doctor__card-name,
+.emergency__card-name {
+  color: #013C38;
+  font-family: "Goblin One", serif;
+  font-size: 20px;
+  margin: 0 0 12px 0;
+}
+
+.doctor__card-details,
+.emergency__card-details {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 8px;
+}
+.doctor__card-details,
+.emergency__card-details {
+  background-color: #B4DDCF;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.doctor__card-detail,
+.emergency__card-detail {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #013C38;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.doctor__card-label,
+.emergency__card-label {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .doctor__card-detail,
+  .emergency__card-detail {
+    font-size: 14px;
+  }
+  
+  .doctor__card-name,
+  .emergency__card-name {
+    font-size: 18px;
+  }
+}
