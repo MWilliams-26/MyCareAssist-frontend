@@ -14,15 +14,11 @@ function DoctorCard({ doctor }) {
         <p className="doctor__card-detail">
           <span className="doctor__card-label">Email:</span> {doctor.email}
         </p>
-        <div className="doctor__card-detail">
-          <span className="doctor__card-label">Address:</span>
-          <div>
-            {doctor.streetAddress}
-            <br />
-            {`${doctor.city}, ${doctor.state} ${doctor.zipCode}`}
-          </div>
-        </div>
-        {doctor.notes && (          <p className="doctor__card-detail">
+        <p className="doctor__card-detail">
+          <span className="doctor__card-label">Address:</span> {`${doctor.streetAddress}, ${doctor.city}, ${doctor.state} ${doctor.zipCode}`}
+        </p>
+        {doctor.notes && (
+          <p className="doctor__card-detail">
             <span className="doctor__card-label">Notes:</span> {doctor.notes}
           </p>
         )}

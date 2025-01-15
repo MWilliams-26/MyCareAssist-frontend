@@ -31,6 +31,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formattedData = {
       ...values,
       address: {
