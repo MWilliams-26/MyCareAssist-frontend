@@ -1,12 +1,10 @@
 @font-face {
-  font-family: 'Goblin One';
+  font-family: 'Goblin One Regular';
   font-style: normal;
   font-weight: normal;
-  src: url('./fonts/GoblinOne.woff2') format('woff2'),
-       url('./fonts/GoblinOne.woff') format('woff'),
-       url('./fonts/GoblinOne.ttf') format('truetype');
-  font-display: swap;
-}
+  src: url('Goblin One Regular'), url('GoblinOne.woff') format('woff');
+  }
+
   @font-face {
     font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 100;
