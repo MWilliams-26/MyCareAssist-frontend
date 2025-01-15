@@ -8,3 +8,10 @@
   padding: 10px 0;
   font-size: 18px;
 }
+
+.footer {
+  width: 100%;
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+}

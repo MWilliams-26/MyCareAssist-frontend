@@ -155,6 +155,12 @@
       "email": "mama@mail.com",
       "name": "Vivian Phoenx",
       "password": "firebird"
+    },
+    {
+      "id": "61f8",
+      "email": "gina@mail.com",
+      "name": "Maxine Water",
+      "password": "Firebird22"
     }
   ]
 }

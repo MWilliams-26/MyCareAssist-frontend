@@ -12,7 +12,10 @@ import Dashboard from '../Dashboard/Dashboard';
 import SetupProfile from '../SetupProfileModal/SetupProfileModal';
 import DoctorsModal from '../DoctorsModal/DoctorsModal';
 import EmergencyContacts from '../EmergencyContactsModal/EmergencyContacts';
+
+
 import { mockDoctors } from '../../utils/constants';
+
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -67,6 +70,7 @@ function App() {
   }
 
   const handleRegistration = ({ email, password, name }) => {
+
     setIsLoggedIn(true);
     setCurrentUser({
       email: email,
@@ -77,7 +81,9 @@ function App() {
     navigate("/dashboard");
   };
 
+
   const handleLogin = (data) => {
+
     setIsLoggedIn(true);
     setCurrentUser({
       email: data.email,
@@ -87,6 +93,38 @@ function App() {
     closeActiveModal();
     navigate('/dashboard');
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -100,15 +138,54 @@ function App() {
   };
 
   const handleCreateProfile = (data) => {
+
+
+
+
+
+
+
+
     setProfileData(data);
     closeActiveModal();
   };
+
+
+
+
+
+
+
+
+
+
 
   const handleAddDoctor = (data) => {
     const newDoctor = {
       _id: Date.now().toString(),
       ...data
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     setDoctors(prevState => ({
       activeDoctor: prevState.doctorsList.length === 0 ? newDoctor : prevState.activeDoctor,
@@ -119,6 +196,8 @@ function App() {
   };
 
   const handleDoctorSelect = (doctorId) => {
+
+
     const selectedDoctor = doctors.doctorsList.find(doc => doc._id === doctorId);
     setDoctors((prevState) => ({
       ...prevState,
@@ -189,6 +268,9 @@ function App() {
       fetchEmergencyContacts();
     }
   }, [isLoggedIn]);
+
+
+
 
   return (
     <div className="App">
@@ -264,8 +346,10 @@ function App() {
         onClose={closeActiveModal}
         addEmergencyContact={handleAddEmergencyContact}
       />
+
     </div>
   );
 }
+
 
 export default App;

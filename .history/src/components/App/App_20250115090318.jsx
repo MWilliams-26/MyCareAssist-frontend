@@ -12,7 +12,10 @@ import Dashboard from '../Dashboard/Dashboard';
 import SetupProfile from '../SetupProfileModal/SetupProfileModal';
 import DoctorsModal from '../DoctorsModal/DoctorsModal';
 import EmergencyContacts from '../EmergencyContactsModal/EmergencyContacts';
+import { Register, Login } from '../../utils/auth';
+import { createProfile, getProfile, addDoctor } from '../../utils/api';
 import { mockDoctors } from '../../utils/constants';
+
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -67,6 +70,7 @@ function App() {
   }
 
   const handleRegistration = ({ email, password, name }) => {
+    // Mock successful registration
     setIsLoggedIn(true);
     setCurrentUser({
       email: email,
@@ -76,8 +80,9 @@ function App() {
     closeActiveModal();
     navigate("/dashboard");
   };
-
+  
   const handleLogin = (data) => {
+    // Mock successful login
     setIsLoggedIn(true);
     setCurrentUser({
       email: data.email,
@@ -86,6 +91,38 @@ function App() {
     });
     closeActiveModal();
     navigate('/dashboard');
+  };
+
+  const handleRegistration = ({ email, password, name }) => {
+    console.log("Registration data:", { email, password, name });
+    Register({ email, password, name })
+      .then((data) => {
+        console.log("Registration successful:", data);
+        setIsLoggedIn(true);
+        closeActiveModal();
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Error during registration:", error);
+      });
+  };
+
+  const handleLogin = (data) => {
+    console.log("Login data:", data);
+    Login(data)
+      .then((userData) => {
+        setIsLoggedIn(true);
+        setCurrentUser({
+          email: userData.email,
+          name: userData.name,
+          _id: userData.id
+        });
+        closeActiveModal();
+        navigate('/dashboard');
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
   };
 
   const handleLogout = () => {
@@ -98,27 +135,54 @@ function App() {
     });
     navigate("/");
   };
-
   const handleCreateProfile = (data) => {
-    setProfileData(data);
-    closeActiveModal();
+    createProfile(data)
+      .then((profile) => {
+        setProfileData(profile);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error creating profile:", error);
+      });
   };
 
-  const handleAddDoctor = (data) => {
-    const newDoctor = {
-      _id: Date.now().toString(),
-      ...data
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profile = await getProfile();
+        if (profile) {
+          SetupProfile(profile);
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
     };
-    
-    setDoctors(prevState => ({
-      activeDoctor: prevState.doctorsList.length === 0 ? newDoctor : prevState.activeDoctor,
-      doctorsList: [...prevState.doctorsList, newDoctor]
-    }));
-    
-    closeActiveModal();
+
+    if (isLoggedIn) {
+      fetchProfile();
+    }
+  }, [isLoggedIn]);
+
+
+
+  const handleAddDoctor = (data) => {
+    addDoctor(data)
+      .then(({ newDoctor, doctorsList }) => {
+        setDoctors(prevState => ({
+          activeDoctor: prevState.doctorsList.length === 0 ? newDoctor : prevState.activeDoctor,
+          doctorsList: doctorsList
+        }));
+        console.log("Doctor added successfully");
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding doctor:", error);
+      });
   };
 
   const handleDoctorSelect = (doctorId) => {
+    console.log("Selected doctor ID:", doctorId);
+    console.log("Current doctors state:", doctors);
     const selectedDoctor = doctors.doctorsList.find(doc => doc._id === doctorId);
     setDoctors((prevState) => ({
       ...prevState,
@@ -189,6 +253,9 @@ function App() {
       fetchEmergencyContacts();
     }
   }, [isLoggedIn]);
+
+  const handleAddMedication = () => { };
+
 
   return (
     <div className="App">
@@ -264,6 +331,7 @@ function App() {
         onClose={closeActiveModal}
         addEmergencyContact={handleAddEmergencyContact}
       />
+
     </div>
   );
 }
