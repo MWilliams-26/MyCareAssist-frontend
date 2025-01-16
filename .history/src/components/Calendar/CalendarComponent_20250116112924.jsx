@@ -64,25 +64,50 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const localizer = momentLocalizer(moment);
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
+
+
+
+
+
+
+
   useEffect(() => {
     if (!googleApiLoaded) {
       loadGoogleScript(setGoogleApiLoaded);
     }
 
+
+
+
+
     return () => {
       const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
+
       if (scriptElement) {
         scriptElement.remove();
         setGoogleApiLoaded(false);
       }
     };
+
   }, []);
 
   useEffect(() => {
     if (googleApiLoaded) {
+
+
+
+
+
+
+
+
+
+
+
       const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
       
       const handleGoogleSignIn = () => {
+
         if (client) {
           client.requestAccessToken();
         }

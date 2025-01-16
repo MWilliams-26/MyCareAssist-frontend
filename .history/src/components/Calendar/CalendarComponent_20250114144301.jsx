@@ -6,6 +6,7 @@ import EventDetailsModal from "../EventDetailsModal/EventDetailsModal";
 import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calender.config";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
+import close from "../../assets/close.svg";
 import { ClipLoader } from "react-spinners";
 import { fetchGoogleCalendarEvents, addEventToGoogleCalendar } from "../../utils/api";
 
@@ -24,22 +25,6 @@ const loadGoogleScript = (setGoogleApiLoaded) => {
   script.async = true;
   script.onload = () => setGoogleApiLoaded(true);
   document.body.appendChild(script);
-};
-
-const initializeGoogleAuth = (CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents) => {
-  if (typeof window.google !== 'undefined') {
-    return google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      callback: (tokenResponse) => {
-        const token = tokenResponse.access_token;
-        setAccessToken(token);
-        fetchUserInfo(token);
-        loadCalendarEvents(token);
-      },
-    });
-  }
-  return null;
 };
 
 const CalendarComponent = ({ onGoogleSignOut }) => {
@@ -64,28 +49,40 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const localizer = momentLocalizer(moment);
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
-  useEffect(() => {
-    if (!googleApiLoaded) {
-      loadGoogleScript(setGoogleApiLoaded);
+  const checkTokenValidity = () => {
+    const savedToken = localStorage.getItem('googleToken');
+    if (savedToken) {
+      setAccessToken(savedToken);
+      setIsAuthenticated(true);
+      fetchUserInfo(savedToken);
+      loadCalendarEvents(savedToken);
     }
+  };
+
+  useEffect(() => {
+    if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
 
     return () => {
       const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
-      if (scriptElement) {
-        scriptElement.remove();
-        setGoogleApiLoaded(false);
-      }
+      if (scriptElement) scriptElement.remove();
     };
-  }, []);
+  }, [googleApiLoaded]);
 
   useEffect(() => {
     if (googleApiLoaded) {
-      const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
-      
+      const client = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (tokenResponse) => {
+          const token = tokenResponse.access_token;
+          setAccessToken(token);
+          fetchUserInfo(token);
+          loadCalendarEvents(token);
+        },
+      });
+
       const handleGoogleSignIn = () => {
-        if (client) {
-          client.requestAccessToken();
-        }
+        client.requestAccessToken();
       };
 
       const button = document.getElementById("google-signin-button");

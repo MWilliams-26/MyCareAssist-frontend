@@ -26,22 +26,6 @@ const loadGoogleScript = (setGoogleApiLoaded) => {
   document.body.appendChild(script);
 };
 
-const initializeGoogleAuth = (CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents) => {
-  if (typeof window.google !== 'undefined') {
-    return google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      callback: (tokenResponse) => {
-        const token = tokenResponse.access_token;
-        setAccessToken(token);
-        fetchUserInfo(token);
-        loadCalendarEvents(token);
-      },
-    });
-  }
-  return null;
-};
-
 const CalendarComponent = ({ onGoogleSignOut }) => {
   const loadLocalEvents = () => {
     const savedEvents = localStorage.getItem('localCalendarEvents');
@@ -64,28 +48,40 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   const localizer = momentLocalizer(moment);
   const { CLIENT_ID, CALENDAR_ID, SCOPES } = GOOGLE_CALENDAR_CONFIG;
 
-  useEffect(() => {
-    if (!googleApiLoaded) {
-      loadGoogleScript(setGoogleApiLoaded);
+  const checkTokenValidity = () => {
+    const savedToken = localStorage.getItem('googleToken');
+    if (savedToken) {
+      setAccessToken(savedToken);
+      setIsAuthenticated(true);
+      fetchUserInfo(savedToken);
+      loadCalendarEvents(savedToken);
     }
+  };
+
+  useEffect(() => {
+    if (!googleApiLoaded) loadGoogleScript(setGoogleApiLoaded);
 
     return () => {
       const scriptElement = document.querySelector("script[src='https://accounts.google.com/gsi/client']");
-      if (scriptElement) {
-        scriptElement.remove();
-        setGoogleApiLoaded(false);
-      }
+      if (scriptElement) scriptElement.remove();
     };
-  }, []);
+  }, [googleApiLoaded]);
 
   useEffect(() => {
     if (googleApiLoaded) {
-      const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
-      
+      const client = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (tokenResponse) => {
+          const token = tokenResponse.access_token;
+          setAccessToken(token);
+          fetchUserInfo(token);
+          loadCalendarEvents(token);
+        },
+      });
+
       const handleGoogleSignIn = () => {
-        if (client) {
-          client.requestAccessToken();
-        }
+        client.requestAccessToken();
       };
 
       const button = document.getElementById("google-signin-button");

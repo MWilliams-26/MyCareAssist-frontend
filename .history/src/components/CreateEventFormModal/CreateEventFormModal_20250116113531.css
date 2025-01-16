@@ -3,7 +3,12 @@
   position: relative;
   z-index: 1;
 }
+
 .modal__header {
+
+
+
+
   display: flex;
   justify-content: flex-end;
   padding: 10px;
@@ -14,6 +19,7 @@
   background: none;
   border: none;
   cursor: pointer;
+
   padding: 8px;
   display: flex;
   align-items: center;
@@ -26,9 +32,12 @@
 }
 
 .modal__close-btn {
+
+
   width: 20px;
   height: 20px;
 }
+
 /* Form Layout */
 .event__form {
   display: flex;

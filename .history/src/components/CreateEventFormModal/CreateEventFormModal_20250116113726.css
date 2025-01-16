@@ -8,6 +8,8 @@
   justify-content: flex-end;
   padding: 10px;
   width: 100%;
+  position: relative;
+  right: -10px;
 }
 
 .modal__close {
@@ -15,6 +17,7 @@
   border: none;
   cursor: pointer;
   padding: 8px;
+  margin-right: -8px;
   display: flex;
   align-items: center;
   justify-content: center;

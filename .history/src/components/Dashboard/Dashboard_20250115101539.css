@@ -1,7 +1,3 @@
-.dashboard {
-  margin-bottom: 80px;
-}
-
 .dashboard__header-title {
   text-align: center;
   font-family: "Goblin One", sans-serif;
@@ -35,7 +31,6 @@
   gap: 20px;
   height: 100vh;
   padding: 20px;
-  padding-bottom: 60px;
   box-sizing: border-box;
 }
 

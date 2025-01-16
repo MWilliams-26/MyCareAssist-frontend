@@ -1,17 +1,11 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  /* margin-top: 20px; Brings the footer closer to the benefits list */
   text-align: center;
   font-family: "Be Vietnam Pro", sans-serif;
   color: #013C38;
-  padding: 10px 0 10px;
+  padding: 10px 0;
   font-size: 18px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: white;
+  position
 }
