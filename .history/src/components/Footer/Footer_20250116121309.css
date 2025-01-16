@@ -1,9 +1,11 @@
 .footer {
   display: flex;
   justify-content: space-between;
+
   text-align: center;
   font-family: "Be Vietnam Pro", sans-serif;
   color: #013C38;
+
   padding: 10px 10px 10px 10px;
   font-size: 18px;
   position: fixed;
@@ -13,5 +15,6 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
-  background-color: #fff;
+
+  background-color: #B4DDCF;
 }
