@@ -11,7 +11,7 @@ export default defineConfig({
   },
   base: '/MyCareAssist-frontend/',
   build: {
-    sourcemap: true,
+    sour
   }
 });
 

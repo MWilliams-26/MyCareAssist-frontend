@@ -9,10 +9,13 @@
 
 /* Be Vietnam Pro - Normal Styles */
 @font-face {
+
   font-family: "Be Vietnam Pro";
   font-weight: 100;
   font-style: normal;
   src: url('./fonts/BeVietnamPro-Thin.ttf');
+
+
 }
 
 @font-face {
@@ -20,6 +23,7 @@
   font-weight: 200;
   font-style: normal;
   src: url('./fonts/BeVietnamPro-ExtraLight.ttf');
+
 }
 @font-face {
   font-family: "Be Vietnam Pro", sans-serif;

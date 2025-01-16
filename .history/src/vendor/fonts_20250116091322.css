@@ -3,24 +3,30 @@
   font-family: 'Goblin One';
   font-style: normal;
   font-weight: normal;
-  src: url('./fonts/GoblinOne.woff') format('woff');
+
+
+  src: url('../fonts/GoblinOne.woff2') format('woff2'),
+       url('../fonts/GoblinOne.woff') format('woff');
   font-display: swap;
 }
 
-/* Be Vietnam Pro - Normal Styles */
+
+/* Be Vietnam Pro fonts would follow the same pattern */
 @font-face {
-  font-family: "Be Vietnam Pro";
+  font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 100;
   font-style: normal;
-  src: url('./fonts/BeVietnamPro-Thin.ttf');
-}
 
+
+  src: url('../fonts/BeVietnamPro-Thin.ttf');
+}
 @font-face {
-  font-family: "Be Vietnam Pro";
+  font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 200;
   font-style: normal;
   src: url('./fonts/BeVietnamPro-ExtraLight.ttf');
 }
+
 @font-face {
   font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 300;

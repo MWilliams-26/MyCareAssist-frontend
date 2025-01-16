@@ -12,6 +12,13 @@ export default defineConfig({
   base: '/MyCareAssist-frontend/',
   build: {
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        sourcemapPathTransform: (relativeSourcePath) => {
+          return relativeSourcePath.replace(/^\//, '');
+        }
+      }
+    }
   }
 });
 

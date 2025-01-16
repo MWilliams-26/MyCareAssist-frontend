@@ -8,10 +8,17 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    fs: {
+      strict: true
+    }
   },
   base: '/MyCareAssist-frontend/',
   build: {
     sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+      sourceMap: true
+    }
   }
 });
 

@@ -10,8 +10,6 @@ export default defineConfig({
     port: 3000,
   },
   base: '/MyCareAssist-frontend/',
-  build: {
-    sourcemap: true,
-  }
+  build: 
 });
 
