@@ -39,7 +39,7 @@ const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
           <input
             type={field.type}
             className="modal__input"
-            id={`emergency-contact-${field.id}`}
+            id={`emergency-contact-${field.id}
             name={field.name}
             placeholder={field.placeholder}
             value={values[field.name]}
@@ -52,7 +52,7 @@ const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
         Notes
         <textarea
           className="modal__input"
-          id="emergency-contact-notes"
+          id="notes"
           name="notes"
           placeholder="Add any additional notes"
           value={values.notes}

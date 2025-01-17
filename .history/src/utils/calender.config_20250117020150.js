@@ -17,4 +17,5 @@ export const GOOGLE_CALENDAR_CONFIG = {
   API_KEY: "AIzaSyBcYJlJvPX-KAh9VuXYbJsifqbKtLdFiUI",
   CALENDAR_ID: "primary",
   SCOPES: "https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar"
+
 }

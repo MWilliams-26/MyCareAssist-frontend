@@ -14,22 +14,20 @@
   box-sizing: border-box;
   z-index: 1000;
   background-color: transparent;
-  min-width: 320px;
-  margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {
   .footer {
-    font-size: 16px; 
+    font-size: 16px; /* Slightly smaller font for tablets */
     padding: 8px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .footer {
-    font-size: 14px; 
+    font-size: 14px; /* Even smaller font for mobile */
     padding: 6px;
-    flex-direction: column; 
+    flex-direction: column; /* Stack items vertically on very small screens */
     gap: 5px;
   }
 }

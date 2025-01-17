@@ -83,7 +83,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
       <input
         type={field.type}
         className="modal__input"
-        id={uniqueId}
+        id={}
         name={field.name}
         placeholder={field.placeholder}
         value={values[field.name]}

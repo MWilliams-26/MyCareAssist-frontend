@@ -79,7 +79,7 @@ const RegisterModal = ({ isOpen, handleRegistration, handleTextButton, onClose }
         <input
           type="text"
           className="modal__input"
-          id="signup-name"
+          id="name"
           name="name"
           placeholder="Name"
           value={data.name}

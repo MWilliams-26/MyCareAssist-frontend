@@ -52,7 +52,7 @@ const EmergencyContacts = ({ onClose, addEmergencyContact, isOpen }) => {
         Notes
         <textarea
           className="modal__input"
-          id="emergency-contact-notes"
+          id="notes"
           name="notes"
           placeholder="Add any additional notes"
           value={values.notes}

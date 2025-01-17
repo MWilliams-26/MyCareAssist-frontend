@@ -6,7 +6,7 @@
   color: #013C38;
   padding: 10px 10px 10px 10px;
   font-size: 18px;
-  position: relative;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -14,22 +14,4 @@
   box-sizing: border-box;
   z-index: 1000;
   background-color: transparent;
-  min-width: 320px;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  .footer {
-    font-size: 16px; 
-    padding: 8px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .footer {
-    font-size: 14px; 
-    padding: 6px;
-    flex-direction: column; 
-    gap: 5px;
-  }
 }

@@ -87,7 +87,7 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
     const baseProps = {
       className: "modal__input",
       name: field.name,
-      id: uniqueId,
+      id: unique,
       value: values[field.name],
       onChange: handleChange,
       required: field.required

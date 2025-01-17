@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-const RegisterModal = ({ isOpen, handleRegistration, handleTextButton, onClose }) => {
+const LoginModal = ({ isOpen, handleLogin, handleTextButton, onClose }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
-    name: "",
   });
 
   const isFormValid = () => {
-    return data.email && data.password && data.name;
+    return data.email && data.password;
   };
 
   const handleChange = (e) => {
@@ -25,22 +24,21 @@ const RegisterModal = ({ isOpen, handleRegistration, handleTextButton, onClose }
     if (!isFormValid()) {
       return;
     }
-    handleRegistration(data);
+    handleLogin(data);
   };
 
   useEffect(() => {
     setData({
       email: "",
       password: "",
-      name: "",
     });
   }, [isOpen]);
 
   return (
     <ModalWithForm
-      title="Sign Up"
-      buttonText="Sign Up"
-      redirectText="Sign In"
+      title="Sign In"
+      buttonText="Sign In"
+      redirectText="Sign Up"
       handleTextButton={handleTextButton}
       isOpen={isOpen}
       onClose={onClose}
@@ -51,13 +49,12 @@ const RegisterModal = ({ isOpen, handleRegistration, handleTextButton, onClose }
         <input
           type="email"
           className="modal__input"
-          id="signup-email"
+          id="login-email"
           name="email"
           placeholder="Email"
           value={data.email}
           onChange={handleChange}
           required
-
         />
       </label>
       <label className="modal__label">
@@ -65,32 +62,16 @@ const RegisterModal = ({ isOpen, handleRegistration, handleTextButton, onClose }
         <input
           type="password"
           className="modal__input"
-          id="signup-password"
+          id="logpassword"
           name="password"
           placeholder="Password"
           value={data.password}
           onChange={handleChange}
           required
-
-        />
-      </label>
-      <label className="modal__label">
-        Name{""}
-        <input
-          type="text"
-          className="modal__input"
-          id="signup-name"
-          name="name"
-          placeholder="Name"
-          value={data.name}
-          onChange={handleChange}
-          required
-
         />
       </label>
     </ModalWithForm>
-  )
-
+  );
 };
 
-export default RegisterModal;
+export default LoginModal;

@@ -63,7 +63,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
       return (
         <select
           className="modal__input"
-          id={uniqueId}
+          id={f}
           name={field.name}
           value={values[field.name]}
           onChange={handleChange}
@@ -83,7 +83,7 @@ const DoctorsModal = ({ onClose, addDoctor, isOpen }) => {
       <input
         type={field.type}
         className="modal__input"
-        id={uniqueId}
+        id={field.id}
         name={field.name}
         placeholder={field.placeholder}
         value={values[field.name]}

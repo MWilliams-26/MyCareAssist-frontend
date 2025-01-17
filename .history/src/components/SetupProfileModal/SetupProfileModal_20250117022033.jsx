@@ -82,12 +82,12 @@ const SetupProfile = ({ profile, onClose, createProfile, isOpen }) => {
   };
 
   const renderField = (field) => {
-    const uniqueId = `setup-profile-${field.name}`;
+    const unique = `setup-profile-${field.name}`;
 
     const baseProps = {
       className: "modal__input",
       name: field.name,
-      id: uniqueId,
+      id: uniqueField,
       value: values[field.name],
       onChange: handleChange,
       required: field.required

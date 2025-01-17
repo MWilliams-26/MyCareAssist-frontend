@@ -15,7 +15,7 @@
   z-index: 1000;
   background-color: transparent;
   min-width: 320px;
-  margin: 0 auto;
+  
 }
 
 @media screen and (max-width: 768px) {
