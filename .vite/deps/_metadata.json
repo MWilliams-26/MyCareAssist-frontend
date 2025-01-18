@@ -1,49 +1,70 @@
 {
-  "hash": "1037f320",
+  "hash": "6dc46df7",
   "configHash": "138e2f1b",
-  "lockfileHash": "b3914fb6",
-  "browserHash": "7e6ff361",
+  "lockfileHash": "ad883cd6",
+  "browserHash": "aeaa8e14",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "405e2f87",
+      "fileHash": "deb211e6",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "812b0e78",
+      "fileHash": "c742cb12",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "d0e47c76",
+      "fileHash": "9feb8af4",
+      "needsInterop": false
+    },
+    "@react-oauth/google": {
+      "src": "../../node_modules/@react-oauth/google/dist/index.esm.js",
+      "file": "@react-oauth_google.js",
+      "fileHash": "1a9ac079",
+      "needsInterop": false
+    },
+    "@fortawesome/react-fontawesome": {
+      "src": "../../node_modules/@fortawesome/react-fontawesome/index.es.js",
+      "file": "@fortawesome_react-fontawesome.js",
+      "fileHash": "67231db2",
+      "needsInterop": false
+    },
+    "@fortawesome/free-solid-svg-icons": {
+      "src": "../../node_modules/@fortawesome/free-solid-svg-icons/index.mjs",
+      "file": "@fortawesome_free-solid-svg-icons.js",
+      "fileHash": "191c3559",
       "needsInterop": false
     },
     "react-big-calendar": {
       "src": "../../node_modules/react-big-calendar/dist/react-big-calendar.esm.js",
       "file": "react-big-calendar.js",
-      "fileHash": "382caeee",
-      "needsInterop": false
-    },
-    "gapi-script": {
-      "src": "../../node_modules/gapi-script/index.js",
-      "file": "gapi-script.js",
-      "fileHash": "56f56c93",
+      "fileHash": "6074d673",
       "needsInterop": false
     },
     "moment": {
       "src": "../../node_modules/moment/dist/moment.js",
       "file": "moment.js",
-      "fileHash": "b3c24120",
+      "fileHash": "4632b2c8",
+      "needsInterop": false
+    },
+    "react-spinners": {
+      "src": "../../node_modules/react-spinners/esm/index.js",
+      "file": "react-spinners.js",
+      "fileHash": "0832ae89",
       "needsInterop": false
     }
   },
   "chunks": {
     "chunk-ZU5SFTFX": {
       "file": "chunk-ZU5SFTFX.js"
+    },
+    "chunk-TZXUNWWM": {
+      "file": "chunk-TZXUNWWM.js"
     },
     "chunk-QTVD6AVW": {
       "file": "chunk-QTVD6AVW.js"
