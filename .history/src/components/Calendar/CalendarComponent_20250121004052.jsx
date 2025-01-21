@@ -84,7 +84,7 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
       const handleGoogleSignIn = () => {
         if (client) {
-          client.requestAccessToken({ prompt: "select_account" });
+          client.requestAccessToken({ prompt: "se"});
         }
       };
 

@@ -81,10 +81,10 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   useEffect(() => {
     if (googleApiLoaded) {
       const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
-
+      
       const handleGoogleSignIn = () => {
         if (client) {
-          client.requestAccessToken({ prompt: "select_account" });
+          client.requestAccessToken();
         }
       };
 
@@ -113,7 +113,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
     if (window.google?.accounts) {
       window.google.accounts.id.revoke();
-      window.google.accounts.oauth2.revoke();
     }
     onGoogleSignOut && onGoogleSignOut();
   };
