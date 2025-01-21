@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import CreateEventFormModal from "../CreateEventFormModal/CreateEventFormModal";
 import EventDetailsModal from "../EventDetailsModal/EventDetailsModal";
-import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calendar.config";
+import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calender.config";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
 import { ClipLoader } from "react-spinners";
