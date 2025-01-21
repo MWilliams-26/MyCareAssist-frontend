@@ -71,11 +71,10 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
     if (!response.ok) {
       const errorData = await response.json();
       console.log('Calendar API Error:', errorData);
-      throw new Error(`Failed to load calendar events: ${errorData.error?.message || 'Unknown error'}`);
+      throw new Error("Failed to load calendar events: ${errorData.error?.message || 'Unknown error'}`");
     }
 
     const data = await response.json();
-    console.log('Recieved Google Calendar events:', data);
     return data.items.map((event) => ({
       title: event.summary,
       description: event.description || "No description",
@@ -83,7 +82,6 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
       end: new Date(event.end.dateTime || event.end.date),
     }));
   } catch (error) {
-    console.error('Detailed Error:', error);
     throw new Error(`Error fetching Google Calendar events: ${error.message}`);
   }
 };

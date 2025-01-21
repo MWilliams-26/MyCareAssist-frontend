@@ -83,7 +83,7 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
       end: new Date(event.end.dateTime || event.end.date),
     }));
   } catch (error) {
-    console.error('Detailed Error:', error);
+    
     throw new Error(`Error fetching Google Calendar events: ${error.message}`);
   }
 };

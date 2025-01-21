@@ -144,14 +144,13 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
 
     try {
       const calendarEvents = await fetchGoogleCalendarEvents(token, CALENDAR_ID);
-      console.log('Loadedd calendar events:', calendarEvents);
+      console.log('Loaded')
       setEvents({
         data: calendarEvents,
         loading: false,
         error: null,
       });
     } catch (err) {
-      console.log('Error loading calendar events:', err);
       handleError(err, setEvents);
     }
   };

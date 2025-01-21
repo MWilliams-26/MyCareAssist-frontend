@@ -151,7 +151,6 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
         error: null,
       });
     } catch (err) {
-      console.log('Error loading calendar events:', err);
       handleError(err, setEvents);
     }
   };
