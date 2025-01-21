@@ -27,10 +27,10 @@ function App() {
     activeContact: null,
     contactsList: [],
   });
-  const [medications, setMedications] = useState({
+  const [medications, setMedications] = useState([
     activeMedication: null,
     medicationsList: [],
-  });
+  ]);
   const [currentUser, setCurrentUser] = useState({
     email: "",
     name: "",
@@ -206,7 +206,7 @@ function App() {
       medicationList: [...prevState.medicationList, newMedication]
     }));
 
-    closeActiveModal();
+    close
   }
 
   return (

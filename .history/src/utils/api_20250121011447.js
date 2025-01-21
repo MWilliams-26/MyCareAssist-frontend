@@ -75,7 +75,7 @@ export const fetchGoogleCalendarEvents = async (token, calendarId) => {
     }
 
     const data = await response.json();
-    console.log('Received Google Calendar events:', data);
+    console.log('Recved Google Calendar events:', data);
     return data.items.map((event) => ({
       title: event.summary,
       description: event.description || "No description",
@@ -123,20 +123,5 @@ export const addEventToGoogleCalendar = async (newEvent, token, calendarId) => {
     return data;
   } catch (error) {
     throw new Error(`Error creating event: ${error.message}`);
-  }
-};
-
-export const revokeGoogleAccess = async (token) => {
-  try {
-    const response = await fetch(`https://oauth2.googleapis.com/revoke?token=${token}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-    return response.ok;
-  } catch (error) {
-    console.error('Error revoking access:', error);
-    throw new Error(`Error revoking access: ${error.message}`);
   }
 };

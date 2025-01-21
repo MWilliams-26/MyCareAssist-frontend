@@ -79,8 +79,15 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   }, []);
 
 useEffect(() => {
+
+
     if (googleApiLoaded) {
         const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
+
+
+
+
+
 
         const handleGoogleSignIn = () => {
             if (client) {
@@ -91,6 +98,12 @@ useEffect(() => {
                 });
             }
         };
+
+
+
+
+
+
 
         const button = document.getElementById("google-signin-button");
         if (button) {

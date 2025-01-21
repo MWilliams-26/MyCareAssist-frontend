@@ -27,10 +27,6 @@ function App() {
     activeContact: null,
     contactsList: [],
   });
-  const [medications, setMedications] = useState({
-    activeMedication: null,
-    medicationsList: [],
-  });
   const [currentUser, setCurrentUser] = useState({
     email: "",
     name: "",
@@ -194,20 +190,6 @@ function App() {
       fetchEmergencyContacts();
     }
   }, [isLoggedIn]);
-
-  const handleAddMedication = (data) => {
-    const newMedication = {
-      _id: Date.now().toString(),
-      ...data
-    };
-
-    setMedications(prevState => ({
-      activeMedication: prevState.medicationList.length === 0 ? newMedication : prevState.activeMedication,
-      medicationList: [...prevState.medicationList, newMedication]
-    }));
-
-    closeActiveModal();
-  }
 
   return (
     <div className="App">

@@ -7,7 +7,7 @@ import { GOOGLE_CALENDAR_CONFIG } from "../../utils/calendar.config";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./CalendarComponent.css";
 import { ClipLoader } from "react-spinners";
-import { fetchGoogleCalendarEvents, addEventToGoogleCalendar, revokeGoogleAccess } from "../../utils/api";
+import { fetchGoogleCalendarEvents, addEventToGoogleCalendar, rev } from "../../utils/api";
 
 const handleError = (error, setEvents) => {
   console.error(error);
@@ -31,7 +31,7 @@ const initializeGoogleAuth = (CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, 
     return google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: SCOPES,
-      prompt: 'select_account', 
+      prompt: 'consent', 
       callback: (tokenResponse) => {
         const token = tokenResponse.access_token;
         setAccessToken(token);
@@ -79,31 +79,22 @@ const CalendarComponent = ({ onGoogleSignOut }) => {
   }, []);
 
 useEffect(() => {
-    if (googleApiLoaded) {
-        const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
+  if (googleApiLoaded) {
+      const client = initializeGoogleAuth(CLIENT_ID, SCOPES, setAccessToken, fetchUserInfo, loadCalendarEvents);
 
-        const handleGoogleSignIn = () => {
-            if (client) {
-                // Force new authentication flow
-                client.requestAccessToken({
-                    prompt: "select_account",
-                    scope: SCOPES
-                });
-            }
-        };
+      const handleGoogleSignIn = () => {
+          if (client) {
+              client.requestAccessToken({ prompt: "select_account" });
+          }
+      };
 
-        const button = document.getElementById("google-signin-button");
-        if (button) {
-            button.onclick = handleGoogleSignIn;
-        }
+      const button = document.getElementById("google-signin-button");
+      if (button) {
+          button.onclick = handleGoogleSignIn;
+      }
+  }
+}, [googleApiLoaded]);
 
-        return () => {
-            if (button) {
-                button.onclick = null;
-            }
-        };
-    }
-}, [googleApiLoaded, SCOPES]);
   const handleAuthSuccess = (response) => {
     const token = response.credential;
     localStorage.setItem('googleToken', token);

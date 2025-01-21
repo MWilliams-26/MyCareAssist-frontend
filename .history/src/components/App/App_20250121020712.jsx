@@ -28,8 +28,7 @@ function App() {
     contactsList: [],
   });
   const [medications, setMedications] = useState({
-    activeMedication: null,
-    medicationsList: [],
+    
   });
   const [currentUser, setCurrentUser] = useState({
     email: "",

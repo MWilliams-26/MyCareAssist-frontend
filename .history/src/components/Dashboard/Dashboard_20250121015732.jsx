@@ -115,10 +115,12 @@ function Dashboard({
           {/* Bottom Right */}
           <div className="dashboard__hub-medication">
             <h2 className="dashboard__hub-medication-title">Medication</h2>
+
             <button className="dashboard__hub-medication-btn" onClick={handleAddMedicationClick}>
               Add Medication +
             </button>
             <MedicationModal 
+              isOpen={isMedicationModalOpen} 
               onClose={() => setIsMedicationModalOpen(false)} 
             />
           </div>

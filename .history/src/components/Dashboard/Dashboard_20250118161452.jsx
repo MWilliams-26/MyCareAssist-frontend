@@ -4,7 +4,6 @@ import EmergencyContacts from "../EmergencyContactsModal/EmergencyContacts";
 import CalendarComponent from "../Calendar/CalendarComponent";
 import DoctorCard from "../DoctorCard/DoctorCard";
 import EmergencyContactCard from "../EmergencyContactCard/EmergencyContactCard";
-import MedicationModal from '../MedicationModal/MedicationModal';
 import "./Dashboard.css";
 
 function Dashboard({
@@ -115,12 +114,7 @@ function Dashboard({
           {/* Bottom Right */}
           <div className="dashboard__hub-medication">
             <h2 className="dashboard__hub-medication-title">Medication</h2>
-            <button className="dashboard__hub-medication-btn" onClick={handleAddMedicationClick}>
-              Add Medication +
-            </button>
-            <MedicationModal 
-              onClose={() => setIsMedicationModalOpen(false)} 
-            />
+            <button className="dashboard__hub-medication-btn" onClick={handleAddMedicationClick}>Add Medication +</button>
           </div>
         </div>
       </section>

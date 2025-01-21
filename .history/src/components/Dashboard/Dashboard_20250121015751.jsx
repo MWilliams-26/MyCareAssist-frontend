@@ -119,6 +119,7 @@ function Dashboard({
               Add Medication +
             </button>
             <MedicationModal 
+              isOpen={isMedicationModalOpen} 
               onClose={() => setIsMedicationModalOpen(false)} 
             />
           </div>

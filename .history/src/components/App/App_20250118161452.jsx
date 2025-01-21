@@ -13,7 +13,6 @@ import SetupProfile from '../SetupProfileModal/SetupProfileModal';
 import DoctorsModal from '../DoctorsModal/DoctorsModal';
 import EmergencyContacts from '../EmergencyContactsModal/EmergencyContacts';
 import { mockDoctors } from '../../utils/constants';
-import MedicationModal from '../MedicationModal/MedicationModal';
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -26,10 +25,6 @@ function App() {
   const [emergencyContacts, setEmergencyContacts] = useState({
     activeContact: null,
     contactsList: [],
-  });
-  const [medications, setMedications] = useState({
-    activeMedication: null,
-    medicationsList: [],
   });
   const [currentUser, setCurrentUser] = useState({
     email: "",
@@ -114,12 +109,12 @@ function App() {
       _id: Date.now().toString(),
       ...data
     };
-
+    
     setDoctors(prevState => ({
       activeDoctor: prevState.doctorsList.length === 0 ? newDoctor : prevState.activeDoctor,
       doctorsList: [...prevState.doctorsList, newDoctor]
     }));
-
+    
     closeActiveModal();
   };
 
@@ -195,20 +190,6 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  const handleAddMedication = (data) => {
-    const newMedication = {
-      _id: Date.now().toString(),
-      ...data
-    };
-
-    setMedications(prevState => ({
-      activeMedication: prevState.medicationList.length === 0 ? newMedication : prevState.activeMedication,
-      medicationList: [...prevState.medicationList, newMedication]
-    }));
-
-    closeActiveModal();
-  }
-
   return (
     <div className="App">
       <Header
@@ -282,12 +263,6 @@ function App() {
         isOpen={activeModal === "addEmergencyContact"}
         onClose={closeActiveModal}
         addEmergencyContact={handleAddEmergencyContact}
-      />
-
-      <MedicationModal
-        isOpen={activeModal === "addMedication"}
-        onClose={closeActiveModal}
-        addMedication={handleAddMedication}
       />
     </div>
   );
