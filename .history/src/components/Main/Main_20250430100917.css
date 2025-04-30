@@ -2,15 +2,19 @@
 .welcome__section {
   text-align: center;
   width: 100%;
+
   padding: 0 20px; /* Add horizontal padding */
   margin-bottom: 0;
+
   border-radius: 15px;
+
   margin-top: 30px;
   box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 /* Title container */
 .welcome__title-container {
+
   margin-bottom: 20px;
   max-width: 800px; /* Limit maximum width */
   margin-left: auto;
@@ -20,6 +24,9 @@
 /* Title styling */
 .welcome__title {
   font-family: "Goblin One", sans-serif;
+
+
+
   font-size: 48px;
   color: #013C38;
   margin-bottom: 15px;
@@ -29,6 +36,9 @@
 
 /* Subtitle text */
 .welcome__text {
+
+
+
   font-size: 20px;
   color: #013C38;
   margin-bottom: 30px;
@@ -49,8 +59,11 @@
   font-size: 18px;
   font-weight: bold;
   padding: 12px 25px;
+
   border: 2px solid #013C38;
   border-radius: 25px;
+
+
   background-color: #b4ddcf;
   color: #013C38;
   cursor: pointer;
@@ -59,6 +72,7 @@
 }
 
 .welcome__button:hover {
+
   background-color: #5c8777;
   color: #ffffff;
   transform: translateY(-2px);
@@ -67,6 +81,11 @@
 /* Benefits list styles */
 .welcome__benefits {
   list-style-type: none;
+
+
+
+
+
   margin: 20px auto 0; /* Center the list */
   padding: 10px 15px 20px; /* Add horizontal padding */
   text-align: left; /* Align text to left for better readability */
@@ -79,6 +98,9 @@
 
 .welcome__benefits li {
   display: flex;
+
+
+
   align-items: flex-start; /* Align to top for better wrapping */
   margin-bottom: 15px;
   padding: 0 5px;
@@ -86,10 +108,12 @@
 
 .welcome__icon {
   color: #5c8777;
+
   margin-right: 10px;
   font-size: 1.2rem;
   min-width: 20px; /* Prevent icon from shrinking */
 }
+
 
 /* Responsive design for tablets */
 @media screen and (max-width: 768px) {
